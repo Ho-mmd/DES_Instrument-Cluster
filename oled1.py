@@ -1,4 +1,4 @@
-import time
+//import time
 import board
 import adafruit_ssd1306
 from PIL import Image, ImageDraw, ImageFont
