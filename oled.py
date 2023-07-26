@@ -4,6 +4,7 @@ import busio
 import adafruit_ssd1306
 from PIL import Image, ImageDraw, ImageFont
 import socket
+from piracer.vehicles import PiRacerStandard, PiracerBase
 
 # OLED 설정
 WIDTH = 128
@@ -23,29 +24,34 @@ def get_ip():
     finally:
         s.close()
     return IP
+    
+piracer = PiracerStandard() 
+ 
+# Set I2C address (0x3C is the default address for SSD1306-based OLED displays)
+i2c = board.I2C()
+oled = adafruit_ssd1306.SSD1306_I2C(128, 32, i2c, addr=0x3C)
 
-# OLED 초기화
+# get ip_address and battery level
+ip = get_ip()
+battery = piracer.get_battery_voltage()
+
+# Clear the display
 oled.fill(0)
 oled.show()
-width = oled.width
-height = oled.height
-image = Image.new("1", (width, height))
+
+# Create blank image for drawing
+image = Image.new("1", (oled.width, oled.height))
 draw = ImageDraw.Draw(image)
+
+# Load default font
 font = ImageFont.load_default()
 
-try:
-    while True:
-        # IP 주소 가져오기
-        ip_address = get_ip()
+# Display text
+draw.text((0, 0), ip, font=font, fill=255)
+draw.text((0, 0), str(round(battery, 1))+"%", font=font, fill=255)
 
-        # OLED 디스플레이에 IP 주소 표시
-        draw.rectangle((0, 0, width, height), outline=0, fill=0)
-        draw.text((0, 0), "IP: {}".format(ip_address), font=font, fill=255)
-        oled.image(image)
-        oled.show()
+oled.image(image)
+oled.show()
 
-        # 1초마다 반복
-        time.sleep(1)
-
-except KeyboardInterrupt:
-    pass
+# Wait for a few seconds
+#time.sleep(5)
