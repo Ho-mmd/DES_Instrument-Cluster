@@ -18,6 +18,8 @@
 
 ### 3. Show the Battery Level and External IP Address in interneal OLED of Piracer
 
+#### --------------------------------
+
 ### 4. Design Cluster using Qt5
 
 ### 5. Show cluster through LCD
