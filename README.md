@@ -38,6 +38,9 @@ deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free r
 
 ##### Update the System following command
 
+##### When Update firmware, you need to choose stable version
+##### [Rpi-firmware](https://github.com/raspberrypi/rpi-firmware)
+
 ```bash
 sudo apt-get update
 sudo apt-get dist-upgrade
@@ -54,9 +57,6 @@ apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys (number)
 apt update
 exit
 ```
-
-##### When Update firmware, you need to choose stable version
-##### [Rpi-firmware](https://github.com/raspberrypi/rpi-firmware)
 
 ##### Install some required packages 
 
@@ -103,6 +103,7 @@ cd ~/Documents/Qt-CrossCompile-RaspberryPi/raspberrypi4
 ```bash
 sudo wget http://download.qt.io/archive/qt/5.15/5.15.2/single/qt-everywhere-src-5.15.2.tar.xz
 sudo tar xfv qt-everywhere-src-5.15.2.tar.xz
+
 cp -R qt-everywhere-src-5.15.2/qtbase/mkspecs/linux-arm-gnueabi-g++ qt-everywhere-src-5.15.2/qtbase/mkspecs/linux-arm-gnueabihf-g++
 sed -i -e 's/arm-linux-gnueabi-/arm-linux-gnueabihf-/g' qt-everywhere-src-5.15.2/qtbase/mkspecs/linux-arm-gnueabihf-g++/qmake.conf
 ```
