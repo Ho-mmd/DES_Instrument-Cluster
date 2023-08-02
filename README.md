@@ -38,8 +38,8 @@ deb-src http://raspbian.raspberrypi.org/raspbian/ buster main contrib non-free r
 
 ##### Update the System following command
 
-##### When Update firmware, you need to choose stable version
-##### [Rpi-firmware](https://github.com/raspberrypi/rpi-firmware)
+###### When Update firmware, you need to choose stable version
+###### [Rpi-firmware](https://github.com/raspberrypi/rpi-firmware)
 
 ```bash
 sudo apt-get update
