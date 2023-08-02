@@ -1,6 +1,4 @@
-# DES_Project2
-
-## SEA:ME / DES_Project2
+# SEA:ME / DES_Project2
 
 ### 1. Test some Modules & Sensors with Arduino
 
