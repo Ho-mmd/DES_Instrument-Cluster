@@ -26,7 +26,7 @@
 #### 1. [QT 5.15 CROSS COMPILE FOR RASPBERRY COMPUTE MODULE 4 ON UBUNTU 20 LTS](https://www.interelectronix.com/qt-515-cross-compilation-raspberry-compute-module-4-ubuntu-20-lts.html)
 #### 2. [Cross-Compile Qt 6 for Raspberry Pi](https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi)
 
-#### Laptop (Qt5): Ubuntu 20.04 / Raspberry Pi 4B: Raspbian Lite 64 bit
+#### Environment - Laptop (Qt5): Ubuntu 20.04 / Raspberry Pi 4B: Raspbian Lite 64 bit
 
 #### [Raspberry Pi]
 
