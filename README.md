@@ -1,24 +1,24 @@
 # SEA:ME / DES_Project2
 
-### 1. Test some Modules & Sensors with Arduino
+## Test some Modules & Sensors with Arduino
 
 #### - Can Module / Shield
 #### - Ultrasinic Sensor
 #### - Speed Sensor (Infrared)
 #### - (_______________________ADD Circuit Diagram After________________________________)
 
-### 2. Conneting Arduino - Raspberry Pi using Can Connection
+## Conneting Arduino - Raspberry Pi using Can Connection
 
 #### - Arduino: Connect with _ Can Shield, Ultrasinic Sensor, Speed Sensor 
 #### - Raspberry Pi: Connect with _ Can Shield, LCD 
 #### - (_______________________ADD Circuit Diagram After________________________________)
 
 
-### 3. Show the Battery Level and External IP Address in interneal OLED of Piracer
+## Show the Battery Level and External IP Address in interneal OLED of Piracer
 
 #### --------------------------------
 
-### 4. Cross-Compile between Qt5 and Raspberry Pi
+## Cross-Compile between Qt5 and Raspberry Pi
 
 #### reference: 
 #### 1. [QT 5.15 CROSS COMPILE FOR RASPBERRY COMPUTE MODULE 4 ON UBUNTU 20 LTS](https://www.interelectronix.com/qt-515-cross-compilation-raspberry-compute-module-4-ubuntu-20-lts.html)
@@ -155,6 +155,6 @@ make -j4
 make install
 ```
 
-### 5. Design Cluster using Qt5
+## Design Cluster using Qt5
 
-### 6. Show cluster through LCD
+## Show cluster through LCD
