@@ -25,6 +25,7 @@
 #### 2. [Cross-Compile Qt 6 for Raspberry Pi](https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi)
 
 #### Environment - Laptop (Qt5): Ubuntu 20.04 / Raspberry Pi 4B: Raspbian Lite 64 bit
+#### If one of them is over Ubuntu 20, this proccess isn't working properly!!!!!!
 
 #### [Raspberry Pi]
 
@@ -137,6 +138,17 @@ symlinks -rc sysroot
 cd build
 ../qt-everywhere-src-5.15.2/configure -release -opengl es2  -eglfs -device linux-rasp-pi4-aarch64 -device-option CROSS_COMPILE=aarch64-linux-gnu- -sysroot ~/Documents/Qt-CrossCompile-RaspberryPi/raspberrypi4/sysroot -prefix /usr/local/qt5.15 -extprefix ~/Documents/Qt-CrossCompile-RaspberryPi/raspberrypi4/qt5.15 -opensource -confirm-license -skip qtscript -skip qtwayland -skip qtwebengine -nomake tests -make libs -pkg-config -no-use-gold-linker -v -recheck
 ```
+
+###### If error occurs like "~ numeric_limits ~" 
+###### -> Add 3 lines
+
+```bash
+#ifdef __cplusplus
+#include <limits>
+#endif
+```
+ 
+###### Top of ~/Documents/Qt-CrossCompile-RaspberryPi/raspberrypi4/qt-everywhere-src-5.15.2/qtbase/src/corelib/global/qglobal.h
 
 ```bash
 make -j4
