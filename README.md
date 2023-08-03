@@ -140,15 +140,15 @@ cd build
 ```
 
 ###### If error occurs like "~ numeric_limits ~" 
-###### -> Add 3 lines
+###### -> Add 3 lines top of ~/Documents/Qt-CrossCompile-RaspberryPi/raspberrypi4/qt-everywhere-src-5.15.2/qtbase/src/corelib/global/qglobal.h
 
 ```bash
 #ifdef __cplusplus
 #include <limits>
 #endif
 ```
- 
-###### Top of ~/Documents/Qt-CrossCompile-RaspberryPi/raspberrypi4/qt-everywhere-src-5.15.2/qtbase/src/corelib/global/qglobal.h
+
+###### Previous success without error, following command below
 
 ```bash
 make -j4
