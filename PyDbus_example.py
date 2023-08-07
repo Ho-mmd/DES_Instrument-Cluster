@@ -1,6 +1,7 @@
 import can
 from pydbus import SessionBus
 from gi.repository import GLib
+import struct
 
 class DbusService:
     dbus = """
@@ -36,9 +37,9 @@ def receive_can_data():
         message = bus.recv()
         if message is not None:
             data = message.data
-            rpm, speed = float.from_bytes(data[0:4], 'little'), float.from_bytes(data[4:8], 'little')
-            dbus_service.current_rpm = rpm
-            dbus_service.current_speed = speed
+            rpm, speed = struct.unpack('<ff', data[:4]), struct.unpack('<ff', data[4:])
+            dbus_service.current_rpm = rpm[0]
+            dbus_service.current_speed = speed[0]
 
 GLib.idle_add(receive_can_data)
 
