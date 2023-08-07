@@ -51,6 +51,9 @@ def receive_can_data():
             dbus_service.current_rpm = struct.unpack('<d', struct.pack('<Q', rpm_8bytes))[0]
             dbus_service.current_speed = struct.unpack('<d', struct.pack('<Q', speed_8bytes))[0]
 
+
+            print(f"Received RPM: {dbus_service.current_rpm}, Speed: {dbus_service.current_speed}")
+
 GLib.idle_add(receive_can_data)
 
 loop = GLib.MainLoop()
