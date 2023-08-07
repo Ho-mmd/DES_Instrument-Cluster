@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     }
 
     // D-Bus 서비스와 인터페이스 설정
-    QDBusInterface canDataInterface("com.example.CanData", "/com/example/CanData", "com.example.canData", connection);
+    QDBusInterface canDataInterface("com.example.canData", "/com/example/canData", "com.example.CanData", connection);
     if (!canDataInterface.isValid()) {
         qDebug() << "Failed to connect to D-Bus interface";
         return 1;
