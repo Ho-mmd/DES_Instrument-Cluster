@@ -2,8 +2,8 @@
 <node>
   <interface name="com.example.CanData">
     <method name="setData">
-      <arg name="rpm" type="d" direction="in"/>
-      <arg name="speed" type="d" direction="in"/>
+      <arg name="rpm" type="f" direction="in"/>
+      <arg name="speed" type="f" direction="in"/>
     </method>
   </interface>
 </node>

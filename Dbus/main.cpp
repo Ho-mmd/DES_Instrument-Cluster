@@ -47,6 +47,9 @@ void CanDataReceiver::onDataReceived(double speed, double rpm)
         m_rpm = rpm;
         emit rpmChanged(rpm);
     }
+
+    qDebug() << '1' << speed;
+    qDebug() << '2' << rpm;
 }
 
 int main(int argc, char *argv[])
