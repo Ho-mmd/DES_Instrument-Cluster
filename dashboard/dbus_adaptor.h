@@ -24,6 +24,31 @@ class QVariant;
 QT_END_NAMESPACE
 
 /*
+ * Adaptor class for interface com.example.CanData
+ */
+class CanDataAdaptor: public QDBusAbstractAdaptor
+{
+    Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "com.example.CanData")
+    Q_CLASSINFO("D-Bus Introspection", ""
+"  <interface name=\"com.example.CanData\">\n"
+"    <method name=\"SetData\">\n"
+"      <arg direction=\"in\" type=\"d\" name=\"speed\"/>\n"
+"      <arg direction=\"in\" type=\"d\" name=\"rpm\"/>\n"
+"    </method>\n"
+"  </interface>\n"
+        "")
+public:
+    CanDataAdaptor(QObject *parent);
+    virtual ~CanDataAdaptor();
+
+public: // PROPERTIES
+public Q_SLOTS: // METHODS
+    void SetData(double speed, double rpm);
+Q_SIGNALS: // SIGNALS
+};
+
+/*
  * Adaptor class for interface local.CanDataReceiver
  */
 class CanDataReceiverAdaptor: public QDBusAbstractAdaptor
@@ -40,6 +65,10 @@ class CanDataReceiverAdaptor: public QDBusAbstractAdaptor
 "    <signal name=\"rpmChanged\">\n"
 "      <arg direction=\"out\" type=\"d\" name=\"newRpm\"/>\n"
 "    </signal>\n"
+"    <method name=\"onDataReceived\">\n"
+"      <arg direction=\"in\" type=\"d\" name=\"speed\"/>\n"
+"      <arg direction=\"in\" type=\"d\" name=\"rpm\"/>\n"
+"    </method>\n"
 "  </interface>\n"
         "")
 public:
@@ -54,6 +83,7 @@ public: // PROPERTIES
     double speed() const;
 
 public Q_SLOTS: // METHODS
+    void onDataReceived(double speed, double rpm);
 Q_SIGNALS: // SIGNALS
     void rpmChanged(double newRpm);
     void speedChanged(double newSpeed);

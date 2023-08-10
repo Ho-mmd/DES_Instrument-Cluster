@@ -18,6 +18,28 @@
 #include <QtCore/QVariant>
 
 /*
+ * Implementation of adaptor class CanDataAdaptor
+ */
+
+CanDataAdaptor::CanDataAdaptor(QObject *parent)
+    : QDBusAbstractAdaptor(parent)
+{
+    // constructor
+    setAutoRelaySignals(true);
+}
+
+CanDataAdaptor::~CanDataAdaptor()
+{
+    // destructor
+}
+
+void CanDataAdaptor::SetData(double speed, double rpm)
+{
+    // handle method call com.example.CanData.SetData
+    QMetaObject::invokeMethod(parent(), "SetData", Q_ARG(double, speed), Q_ARG(double, rpm));
+}
+
+/*
  * Implementation of adaptor class CanDataReceiverAdaptor
  */
 
@@ -43,5 +65,11 @@ double CanDataReceiverAdaptor::speed() const
 {
     // get the value of property speed
     return qvariant_cast< double >(parent()->property("speed"));
+}
+
+void CanDataReceiverAdaptor::onDataReceived(double speed, double rpm)
+{
+    // handle method call local.CanDataReceiver.onDataReceived
+    QMetaObject::invokeMethod(parent(), "onDataReceived", Q_ARG(double, speed), Q_ARG(double, rpm));
 }
 

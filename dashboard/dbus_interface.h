@@ -21,6 +21,32 @@
 #include <QtDBus/QtDBus>
 
 /*
+ * Proxy class for interface com.example.CanData
+ */
+class ComExampleCanDataInterface: public QDBusAbstractInterface
+{
+    Q_OBJECT
+public:
+    static inline const char *staticInterfaceName()
+    { return "com.example.CanData"; }
+
+public:
+    ComExampleCanDataInterface(const QString &service, const QString &path, const QDBusConnection &connection, QObject *parent = nullptr);
+
+    ~ComExampleCanDataInterface();
+
+public Q_SLOTS: // METHODS
+    inline QDBusPendingReply<> SetData(double speed, double rpm)
+    {
+        QList<QVariant> argumentList;
+        argumentList << QVariant::fromValue(speed) << QVariant::fromValue(rpm);
+        return asyncCallWithArgumentList(QStringLiteral("SetData"), argumentList);
+    }
+
+Q_SIGNALS: // SIGNALS
+};
+
+/*
  * Proxy class for interface local.CanDataReceiver
  */
 class LocalCanDataReceiverInterface: public QDBusAbstractInterface
@@ -44,11 +70,23 @@ public:
     { return qvariant_cast< double >(property("speed")); }
 
 public Q_SLOTS: // METHODS
+    inline QDBusPendingReply<> onDataReceived(double speed, double rpm)
+    {
+        QList<QVariant> argumentList;
+        argumentList << QVariant::fromValue(speed) << QVariant::fromValue(rpm);
+        return asyncCallWithArgumentList(QStringLiteral("onDataReceived"), argumentList);
+    }
+
 Q_SIGNALS: // SIGNALS
     void rpmChanged(double newRpm);
     void speedChanged(double newSpeed);
 };
 
+namespace com {
+  namespace example {
+    typedef ::ComExampleCanDataInterface CanData;
+  }
+}
 namespace local {
   typedef ::LocalCanDataReceiverInterface CanDataReceiver;
 }
