@@ -3,7 +3,24 @@
 
 #include <QObject>
 #include <QDBusInterface>
+#include <QDBusAbstractAdaptor>
 #include <QDebug>
+
+class CanDataReceiver;
+
+class CanDataAdaptor : public QDBusAbstractAdaptor {
+    Q_OBJECT
+    Q_CLASSINFO("D-Bus Interface", "com.example.CanData")
+
+private:
+    CanDataReceiver *m_receiver;
+
+public:
+    CanDataAdaptor(CanDataReceiver *receiver);
+
+public slots:
+    void SetData(double speed, double rpm);
+};
 
 class CanDataReceiver : public QObject
 {
@@ -21,7 +38,7 @@ signals:
     void speedChanged(double newSpeed);
     void rpmChanged(double newRpm);
 
-private slots:
+public slots:
     void onDataReceived(double speed, double rpm);
 
 private:
@@ -31,4 +48,3 @@ private:
 };
 
 #endif // MAIN_H
-

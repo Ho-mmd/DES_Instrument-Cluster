@@ -1,35 +1,28 @@
-#include <QtGui/QGuiApplication>
+#include <QGuiApplication>
 #include <QtQml/QQmlApplicationEngine>
 #include <QtGui/QFont>
 #include <QtGui/QFontDatabase>
 #include <QQmlContext>
+#include <QDBusConnection>
 #include "main.h"
 
-CanDataReceiver::CanDataReceiver(QObject *parent) : QObject(parent), m_speed(0), m_rpm(0)
-{
+CanDataAdaptor::CanDataAdaptor(CanDataReceiver *receiver)
+    : QDBusAbstractAdaptor(receiver), m_receiver(receiver) {}
+
+void CanDataAdaptor::SetData(double speed, double rpm) {
+    m_receiver->onDataReceived(speed, rpm);
+}
+
+CanDataReceiver::CanDataReceiver(QObject *parent) : QObject(parent), m_speed(0), m_rpm(0) {
+    new CanDataAdaptor(this);  // Adaptor 인스턴스 생성
     QDBusConnection connection = QDBusConnection::sessionBus();
-    if (!connection.isConnected()) {
-        qDebug() << "Cannot connect to D-Bus.";
+    if (!connection.registerService("com.example.CanData")) {
+        qDebug() << "Cannot register D-Bus service.";
         return;
     }
-
-    dbusInterface = new QDBusInterface("com.example.CanData", "/com/example/CanData/Speed",
-                                       "com.example.CanData", connection, this);
-
-    if (!dbusInterface->isValid()) {
-        qDebug() << "D-Bus interface is not valid:" << dbusInterface->lastError().message();
+    if (!connection.registerObject("/com/example/CanData/Speed", this)) {
+        qDebug() << "Cannot register D-Bus object.";
         return;
-    }
-
-    bool success = connection.connect("com.example.CanData",
-                                      "/com/example/CanData/Speed",
-                                      "com.example.CanData",
-                                      "setData",
-                                      this,
-                                      SLOT(onDataReceived(double,double)));
-
-    if (!success) {
-        qDebug() << "Failed to connect to setData signal.";
     }
 }
 
@@ -41,8 +34,7 @@ double CanDataReceiver::rpm() const {
     return m_rpm;
 }
 
-void CanDataReceiver::onDataReceived(double speed, double rpm)
-{
+void CanDataReceiver::onDataReceived(double speed, double rpm) {
     qDebug() << '1' << speed;
     qDebug() << '2' << rpm;
 
@@ -57,16 +49,13 @@ void CanDataReceiver::onDataReceived(double speed, double rpm)
     }
 }
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QGuiApplication app(argc, argv);
 
     QFontDatabase::addApplicationFont(":/fonts/DejaVuSans.ttf");
     app.setFont(QFont("DejaVu Sans"));
 
-    CanDataReceiver receiver;  // Initialize the CanDataReceiver
-    qmlRegisterType<CanDataReceiver>("CanData", 1, 0, "CanDataReceiver");
-
+    CanDataReceiver receiver;  // CanDataReceiver 초기화
 
     QQmlApplicationEngine engine(QUrl("qrc:/qml/test.qml"));
     engine.rootContext()->setContextProperty("canDataReceiver", &receiver);
