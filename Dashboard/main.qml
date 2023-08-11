@@ -33,7 +33,7 @@ ApplicationWindow {
 
             Timer {
                 id: imageTimer
-                interval: 100 - (canReceiver.speed * 9)  // 최소 10ms, 최대 1000ms 간격으로 설정됨
+                interval: 1500 - (canReceiver.speed * 9)  // 최소 10ms, 최대 1000ms 간격으로 설정됨
 
                 running: true
                 repeat: true
