@@ -1,3 +1,5 @@
 /build*
 *.sh
 *.qtc_clangd
+*.txt
+/sendbus
