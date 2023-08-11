@@ -1,5 +1,17 @@
 <RCC>
     <qresource prefix="/">
         <file>main.qml</file>
+        <file>images/hubo3-0.png</file>
+        <file>images/hubo3-1.png</file>
+        <file>images/hubo3-2.png</file>
+        <file>images/hubo3-3.png</file>
+        <file>images/hubo3-4.png</file>
+        <file>images/hubo3-5.png</file>
+        <file>images/hubo3-6.png</file>
+        <file>images/hubo3-7.png</file>
+        <file>images/hubo3-8.png</file>
+        <file>images/hubo3-9.png</file>
+        <file>images/hubo3-10.png</file>
+        <file>images/hubo3-11.png</file>
     </qresource>
 </RCC>

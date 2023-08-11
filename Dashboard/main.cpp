@@ -25,6 +25,10 @@ double CanReceiver::rpm() const {
 void CanReceiver::setData(double speed, double rpm) {
     m_speed = speed;
     m_rpm = rpm;
+
+    qDebug() << speed;
+    qDebug() << rpm;
+
     emit speedChanged(); // Notify any listeners that speed has changed
     emit rpmChanged();   // Notify any listeners that rpm has changed
 }

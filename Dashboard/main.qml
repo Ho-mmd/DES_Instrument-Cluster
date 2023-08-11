@@ -3,22 +3,65 @@ import QtQuick.Controls 2.12
 
 ApplicationWindow {
     visible: true
-    width: 640
-    height: 480
+    width: 1280
+    height: 400
     title: "CAN Data Viewer"
 
-    Column {
-        anchors.centerIn: parent
-        spacing: 20
+    Item {
+        id: rootItem
+        property int currentImageIndex: 0
+        property var imageSources: [
+            "images/hubo3-0.png",
+            "images/hubo3-1.png",
+            "images/hubo3-2.png",
+            "images/hubo3-3.png",
+            "images/hubo3-4.png",
+            "images/hubo3-5.png",
+            "images/hubo3-6.png",
+            "images/hubo3-7.png",
+            "images/hubo3-8.png",
+            "images/hubo3-9.png",
+            "images/hubo3-10.png",
+            "images/hubo3-11.png"
+        ]
 
-        Text {
-            text: "Speed: " + canReceiver.speed + " km/h"
-            font.pixelSize: 24
-        }
+        Image {
+            id: animatedImage
+            width: 100
+            height: 100
+            source: parent.imageSources[parent.currentImageIndex]
 
-        Text {
-            text: "RPM: " + canReceiver.rpm
-            font.pixelSize: 24
+            Timer {
+                id: imageTimer
+                interval: 100 - (canReceiver.speed * 9)  // 최소 10ms, 최대 1000ms 간격으로 설정됨
+
+                running: true
+                repeat: true
+
+                onTriggered: {
+                    rootItem.currentImageIndex = (rootItem.currentImageIndex + 1) % rootItem.imageSources.length;
+                    animatedImage.source = rootItem.imageSources[rootItem.currentImageIndex];
+                    //console.log("Image source changed to: " + animatedImage.source);
+                    console.log("Image source changed to: " + canReceiver.speed);
+                }
+            }
         }
     }
 }
+
+
+//    Column {
+//        anchors.centerIn: parent
+//        spacing: 20
+
+//        Text {
+//            text: "Speed: " + canReceiver.speed + " km/h"
+//            font.pixelSize: 24
+//        }
+
+//        Text {
+//            text: "RPM: " + canReceiver.rpm
+//            font.pixelSize: 24
+//        }
+//    }
+
