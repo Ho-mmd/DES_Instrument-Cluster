@@ -1,23 +1,23 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import CanData 1.0
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 ApplicationWindow {
     visible: true
     width: 640
     height: 480
+    title: "CAN Data Viewer"
 
     Column {
         anchors.centerIn: parent
         spacing: 20
 
         Text {
-            text: "Speed: " + canDataReceiver.speed + " km/h"
+            text: "Speed: " + canReceiver.speed + " km/h"
             font.pixelSize: 24
         }
 
         Text {
-            text: "RPM: " + canDataReceiver.rpm
+            text: "RPM: " + canReceiver.rpm
             font.pixelSize: 24
         }
     }
