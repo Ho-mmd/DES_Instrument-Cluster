@@ -18,7 +18,7 @@
 
 ### --------------------------------
 
-### [CrossCompile between ubuntu 20.04 - Raspbian Desktop 64bit](https://github.com/Ho-mmd/DES_Project2/blob/main/Readmd/Crosscompile.md)
+### [CrossCompile Qt5 between ubuntu 20.04 - Raspbian Desktop 64bit](https://github.com/Ho-mmd/DES_Project2/blob/main/Readmd/Crosscompile.md)
 
 
 ## Design Cluster using Qt5
