@@ -129,7 +129,7 @@ symlinks -rc sysroot
 
 ###### Before compiling, we use aarch64 for device, so we need to add it to our directory
 ###### [device - aarch64](https://code.qt.io/cgit/qt/qtbase.git/tree/mkspecs/devices/linux-rasp-pi4-aarch64)
-###### 1. Make a directory named "linux-rasp-pi4-aarch64" in mkspecs/devices/
+###### 1. Make a directory named "linux-rasp-pi4-aarch64" in "Documents/Qt-CrossCompile-RaspberryPi/raspberrpy4/qt-everywhere-src-5.15.2/qtbase/mkspecs/devices/"
 ###### 2. Download 2 files following upper url (qmake.conf, qplatformdefs.h) and add in "linux-rasp-pi4-aarch64" directory
 
 ###### If you finished previous process, following the command below
