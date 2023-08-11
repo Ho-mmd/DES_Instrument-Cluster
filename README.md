@@ -155,6 +155,20 @@ make -j4
 make install
 ```
 
+##### Setting Environment in Qt5
+
+###### Select Tools -> External -> Configure
+###### Select Devices -> Devices -> Add -> Remote Linux Device (Add your information of raspberry pi) -> Apply -> Test 
+###### Select Kits -> Qt Versions -> Add -> Open "Documents/Qt-CrossCompile-RaspberryPi/raspberrpy4/qt5.15/bin/qmake" 
+###### Select Kits -> Kits -> Add (Add your information) -> Apply
+####### Name: Name of Kits you want to use
+####### Run device type: Remote Linux Device
+####### Run device: Select Device what you made in "Devices"
+####### Compiler: C, C++ - arm 64bit (aarch64)
+####### Qt version: Qt 5.15.2 (qt5.15)
+
+<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/2c9a32e7-38ee-4950-9bb5-7ec6324734ad" width="400" height="400"/>
+
 ## Design Cluster using Qt5
 
 ## Show cluster through LCD
