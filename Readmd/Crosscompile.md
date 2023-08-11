@@ -3,6 +3,7 @@
 #### reference: 
 #### 1. [QT 5.15 CROSS COMPILE FOR RASPBERRY COMPUTE MODULE 4 ON UBUNTU 20 LTS](https://www.interelectronix.com/qt-515-cross-compilation-raspberry-compute-module-4-ubuntu-20-lts.html)
 #### 2. [Cross-Compile Qt 6 for Raspberry Pi](https://wiki.qt.io/Cross-Compile_Qt_6_for_Raspberry_Pi)
+#### 3. [CONFIGURE QT CREATOR ON UBUNTU 20 LTS FOR CROSS-COMPILE](https://www.interelectronix.com/configuring-qt-creator-ubuntu-20-lts-cross-compilation.html)
 
 #### Environment - Laptop (Qt5): Ubuntu 20.04 / Raspberry Pi 4B: Raspbian Lite 64 bit
 ##### (If one of them is over Ubuntu 20, this proccess isn't working properly!!!!!!)
@@ -148,3 +149,10 @@ make install
 ###### Qt version: Qt 5.15.2 (qt5.15)
 
 <img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/2c9a32e7-38ee-4950-9bb5-7ec6324734ad" width="400" height="400"/>
+
+
+#### If you finished setting and build process, using below command to send file to rpi
+
+```bash
+rsync -avz --rsync-path="sudo rsync" (file_name) (pi_username)@(pi_ip_address):(pi_location)
+```
