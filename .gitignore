@@ -1,2 +1,3 @@
 /build*
 *.sh
+*.qtc_clangd
