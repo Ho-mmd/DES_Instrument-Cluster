@@ -1,9 +1,7 @@
+import asyncio
 from pydbus import SessionBus
-from gi.repository import GLib
-import time
 
 bus = SessionBus()
-loop = GLib.MainLoop()
 
 class DbusSpeed:
     def __init__(self):
@@ -17,20 +15,20 @@ class DbusSpeed:
         print(f"Sending RPM: {self._current_rpm}, Speed: {self._current_speed}")
         self._dbus.setData(speed, rpm)
 
-def send_data_incrementally(dbus_speed):
-    # Incrementally increase speed and rpm by 5
-    if(dbus_speed._current_speed == 160):
-    	time.sleep(10)
-    	dbus_speed._current_speed = 110
-    	
-    dbus_speed.update_speed_rpm(dbus_speed._current_speed + 2, dbus_speed._current_rpm + 2)
-    
-    # Return True to keep the timeout callback active
-    return True
+async def send_data_incrementally(dbus_speed):
+    while True:
+        # Incrementally increase speed and rpm by 5
+        if(dbus_speed._current_speed == 160):
+            await asyncio.sleep(10)
+            dbus_speed._current_speed = 110
+            
+        dbus_speed.update_speed_rpm(dbus_speed._current_speed + 1, dbus_speed._current_rpm + 1)
+        
+        # Sleep for a second
+        await asyncio.sleep(1)
 
 dbus_speed = DbusSpeed()
 
-# Schedule the function to run every second
-GLib.timeout_add_seconds(1, send_data_incrementally, dbus_speed)
+# Start the asyncio main loop
+asyncio.run(send_data_incrementally(dbus_speed))
 
-loop.run()
