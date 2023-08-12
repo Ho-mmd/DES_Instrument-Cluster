@@ -1,7 +1,7 @@
 # Cross-Compile between Qt5 and Raspberry Pi
 
 ### About CrossCompile
-##### Crosscompile is the process of creating executable files on other platforms, Not on the platform which compiler runs
+##### : Crosscompile is the process of creating executable files on other platforms, Not on the platform which compiler runs
 
 #### reference: 
 #### 1. [QT 5.15 CROSS COMPILE FOR RASPBERRY COMPUTE MODULE 4 ON UBUNTU 20 LTS](https://www.interelectronix.com/qt-515-cross-compilation-raspberry-compute-module-4-ubuntu-20-lts.html)
