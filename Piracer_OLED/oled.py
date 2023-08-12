@@ -6,13 +6,13 @@ from PIL import Image, ImageDraw, ImageFont
 import socket
 from piracer.vehicles import PiRacerStandard, PiracerBase
 
-# OLED 설정
+# Setting OLED
 WIDTH = 128
 HEIGHT = 32
 i2c = busio.I2C(board.SCL, board.SDA)
 oled = adafruit_ssd1306.SSD1306_I2C(WIDTH, HEIGHT, i2c)
 
-# IP 주소 가져오는 함수
+# get ip Address
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     try:
