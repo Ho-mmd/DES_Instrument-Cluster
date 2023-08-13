@@ -3,6 +3,7 @@ from pydbus import SessionBus
 from piracer.vehicles import PiRacerStandard
 
 bus = SessionBus()
+piracder = PiRacerStandard()
 
 class DbusSpeed:
     def __init__(self):
