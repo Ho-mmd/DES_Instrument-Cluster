@@ -3,8 +3,8 @@ import QtQuick.Controls 2.12
 
 ApplicationWindow {
     visible: true
-    width: 400
-    height: 1280
+    width: 1280
+    height: 400
     title: "CAN Data Viewer"
 
     Item {
