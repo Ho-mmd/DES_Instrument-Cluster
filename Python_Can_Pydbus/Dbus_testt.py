@@ -1,15 +1,16 @@
 import asyncio
 from pydbus import SessionBus
-#from piracer.vehicles import PiRacerStandard
+from piracer.vehicles import PiRacerStandard
 
 bus = SessionBus()
+piracder = PiRacerStandard()
 
 class DbusSpeed:
     def __init__(self):
         self._dbus = bus.get("com.example.CanData", "/com/example/CanData/Data")
         self._current_speed = 0
         self._current_rpm = 0
-        self._current_battery = 100
+        self._current_battery = 0
         self._current_battery1 = 0 
         self._current_battery2 = 0
         self._current_battery3 = 0
@@ -17,8 +18,7 @@ class DbusSpeed:
     def update(self, speed, rpm, battery1, battery2, battery3):
         self._current_speed = speed
         self._current_rpm = rpm
-        #self._current_battery = (((piracer.get_battery_voltage() / 3) - 2.5) / 1.7) * 100
-        self._current_battery -= 1
+        self._current_battery = (((piracer.get_battery_voltage() / 3) - 2.5) / 1.7) * 100
         self._current_battery3 = self._current_battery % 10
         self._current_battery2 = (self._current_battery / 10) % 10 
         self._current_battery1 = self._current_battery / 100
