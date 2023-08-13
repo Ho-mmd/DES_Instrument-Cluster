@@ -27,13 +27,15 @@ ApplicationWindow {
 
         Image {
             id: animatedImage
-            width: 100
-            height: 100
+            x: 470
+            y: 50
+            width: 300
+            height: 300
             source: parent.imageSources[parent.currentImageIndex]
 
             Timer {
                 id: imageTimer
-                interval: 1500 - (canReceiver.speed * 9)  // 최소 10ms, 최대 1000ms 간격으로 설정됨
+                interval: 1000 - (canReceiver.speed * 9)  //Mininum: 1ms, Maximum: 1000ms
 
                 running: true
                 repeat: true
