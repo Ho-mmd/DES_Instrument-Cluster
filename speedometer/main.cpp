@@ -39,11 +39,11 @@ int main(int argc, char *argv[])
 
        // val = volt;
 
-        if(val < 2000)
+        if(val < 5001)
                 ptrSpeedometer->setOuterColor(QColor(128,255,0));
-        else if(val > 2000 && val < 3000)
+        else if(val > 5000 && val < 7501)
                 ptrSpeedometer->setOuterColor(QColor(255,255,0));
-        else if(val > 3000)
+        else if(val > 7500)
                 ptrSpeedometer->setOuterColor(QColor(255,0,0));
 
 //        if(abs(volt-val) <=10)
@@ -53,9 +53,7 @@ int main(int argc, char *argv[])
 //        else if( volt < val)
 //            val = val - 10;
 
-//        ptrSpeedometer->setSpeed(val);
-
-        if(val >= 4000)
+        if(val >= ptrSpeedometer->getHighestRange())
             direction = false;
         else if(val <= 0.1)
             direction = true;
