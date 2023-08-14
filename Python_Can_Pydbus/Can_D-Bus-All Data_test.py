@@ -11,14 +11,14 @@ class DbusSpeed:
     
     def __init__(self):
         # Get D-Bus object
-        self._dbus = bus.get_object("com.example.CanData", "/com/example/CanData/Speed")
+        self._dbus = bus.get_object("com.example.CanData", "/com/example/CanData/Data")
         
         # Initialize current speed and rpm
         self._current_speed = 0.0
         self._current_rpm = 0.0
         self._current_battery = 0.0
 
-    def update_speed_rpm_battery(self, speed, rpm, battery):
+    def update(self, speed, rpm, battery):
         """Update and print the current speed, rpm, and battery, then set them to the D-Bus object."""
         self._current_speed = speed
         self._current_rpm = rpm
@@ -55,7 +55,7 @@ async def receive_can_data_and_battery(dbus_speed):
             dbus_speed.update_speed_rpm_battery(speed, rpm, battery)
             
             # Sleep for a second
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.3)
 
 # Start receiving CAN data and battery info, and run the asyncio main loop
 dbus_speed = DbusSpeed()
