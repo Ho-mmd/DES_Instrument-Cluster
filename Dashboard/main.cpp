@@ -22,37 +22,23 @@ double CanReceiver::rpm() const {
 }
 
 // Getter function for battery
-double CanReceiver::battery1() const {
-    return m_battery1;
-}
-
-double CanReceiver::battery2() const {
-    return m_battery2;
-}
-
-double CanReceiver::battery3() const {
-    return m_battery3;
+double CanReceiver::battery() const {
+    return m_battery;
 }
 
 // Method to set the speed, rpm and battery data, and emit signals when they change
-void CanReceiver::setData(double speed, double rpm, double battery1, double battery2, double battery3) {
+void CanReceiver::setData(double speed, double rpm, double battery) {
     m_speed = speed;
     m_rpm = rpm;
-    m_battery1 = int(battery1);
-    m_battery2 = int(battery2);
-    m_battery3 = int(battery3);
+    m_battery = battery;
 
     qDebug() << speed;
     qDebug() << rpm;
-    qDebug() << battery1;
-    qDebug() << battery2;
-    qDebug() << battery3;
+    qDebug() << battery;
 
     emit speedChanged(); // Notify any listeners that speed has changed
     emit rpmChanged();   // Notify any listeners that rpm has changed
-    emit battery1Changed();   // Notify any listeners that battery has changed
-    emit battery2Changed();
-    emit battery3Changed();
+    emit batteryChanged();   // Notify any listeners that battery has changed
 }
 
 

@@ -17,9 +17,7 @@ class CanReceiver : public QObject
     // It has a READ accessor and a signal to notify when its value changes.
     Q_PROPERTY(float speed READ speed NOTIFY speedChanged)   // Property for speed.
     Q_PROPERTY(float rpm READ rpm NOTIFY rpmChanged)         // Property for rpm.
-    Q_PROPERTY(float battery1 READ battery1 NOTIFY battery1Changed) // Property for battery.
-    Q_PROPERTY(float battery2 READ battery2 NOTIFY battery2Changed)
-    Q_PROPERTY(float battery3 READ battery3 NOTIFY battery3Changed)
+    Q_PROPERTY(float battery READ battery NOTIFY batteryChanged) // Property for battery.
 
 public:
     // Constructor declaration.
@@ -28,30 +26,24 @@ public:
     // Accessor methods (getters) for the properties.
     double speed() const;    // Getter for the 'speed' property.
     double rpm() const;      // Getter for the 'rpm' property.
-    double battery1() const;      // Getter for the 'battery' property.
-    double battery2() const;
-    double battery3() const;
+    double battery() const;      // Getter for the 'battery' property.
 
 public slots:
     // Slot declaration. Slots are methods that can be invoked in response to signals.
     // In the context of D-Bus, this can also be a method that can be invoked over the bus.
-    void setData(double speed, double rpm, double battery1, double battery2, double battery3);
+    void setData(double speed, double rpm, double battery);
 
 signals:
     // Signal declarations. Signals are emitted to notify other parts of the application of certain events.
     void speedChanged();    // Signal emitted when the 'speed' property changes.
     void rpmChanged();      // Signal emitted when the 'rpm' property changes.
-    void battery1Changed();      // Signal emitted when the 'battery' property changes.
-    void battery2Changed();
-    void battery3Changed();
+    void batteryChanged();      // Signal emitted when the 'battery' property changes.
 
 private:
     // Private member variables to store the actual data.
     double m_speed;         // Holds the speed data.
     double m_rpm;           // Holds the rpm data.
-    double m_battery1;           // Holds the battery data.
-    double m_battery2;
-    double m_battery3;
+    double m_battery;           // Holds the battery data.
 };
 
 // Ends the header guard.
