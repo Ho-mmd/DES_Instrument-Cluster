@@ -8,7 +8,7 @@
 CanReceiver::CanReceiver() {
     // Register the D-Bus service and the D-Bus object for our application
     QDBusConnection::sessionBus().registerService("com.example.CanData");
-    QDBusConnection::sessionBus().registerObject("/com/example/CanData/Speed", this, QDBusConnection::ExportAllSlots);
+    QDBusConnection::sessionBus().registerObject("/com/example/CanData/Data", this, QDBusConnection::ExportAllSlots);
 }
 
 // Getter function for speed
@@ -21,17 +21,40 @@ double CanReceiver::rpm() const {
     return m_rpm;
 }
 
-// Method to set the speed and rpm data, and emit signals when they change
-void CanReceiver::setData(double speed, double rpm) {
+// Getter function for battery
+double CanReceiver::battery1() const {
+    return m_battery1;
+}
+
+double CanReceiver::battery2() const {
+    return m_battery2;
+}
+
+double CanReceiver::battery3() const {
+    return m_battery3;
+}
+
+// Method to set the speed, rpm and battery data, and emit signals when they change
+void CanReceiver::setData(double speed, double rpm, double battery1, double battery2, double battery3) {
     m_speed = speed;
     m_rpm = rpm;
+    m_battery1 = int(battery1);
+    m_battery2 = int(battery2);
+    m_battery3 = int(battery3);
 
     qDebug() << speed;
     qDebug() << rpm;
+    qDebug() << battery1;
+    qDebug() << battery2;
+    qDebug() << battery3;
 
     emit speedChanged(); // Notify any listeners that speed has changed
     emit rpmChanged();   // Notify any listeners that rpm has changed
+    emit battery1Changed();   // Notify any listeners that battery has changed
+    emit battery2Changed();
+    emit battery3Changed();
 }
+
 
 // Main function for the application
 int main(int argc, char *argv[])
