@@ -3,3 +3,5 @@
 *.qtc_clangd
 *.txt
 /sendbus
+*.user
+images

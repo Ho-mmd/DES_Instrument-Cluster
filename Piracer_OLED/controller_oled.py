@@ -60,7 +60,7 @@ if __name__ == '__main__':
             if abs(throttle) == 0 and abs(steering) == 0:
                 # Input X
                 ip = get_ip()
-                battery = piracer.get_battery_voltage()
+                battery = (((piracer.get_battery_voltage() / 3) - 2.5) / 1.7) * 100
                 display_info(ip, battery)
             else:
                 # Input O
