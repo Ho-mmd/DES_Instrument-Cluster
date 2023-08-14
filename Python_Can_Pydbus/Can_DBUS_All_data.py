@@ -2,7 +2,7 @@ import can
 import struct
 import asyncio
 from pydbus import SessionBus
-from piracer.vehicle import PiRacerStandard
+from piracer.vehicles import PiRacerStandard
 
 bus = SessionBus()
 
@@ -11,7 +11,7 @@ class DbusSpeed:
     
     def __init__(self):
         # Get D-Bus object
-        self._dbus = bus.get_object("com.example.CanData", "/com/example/CanData/Data")
+        self._dbus = bus.get("com.example.CanData", "/com/example/CanData/Data")
         
         # Initialize current speed and rpm
         self._current_speed = 0.0
@@ -52,7 +52,7 @@ async def receive_can_data_and_battery(dbus_speed):
             battery = (((piracer.get_battery_voltage() / 3) - 2.5) / 1.7) * 100
 
             # Update values in dbus_speed
-            dbus_speed.update_speed_rpm_battery(speed, rpm, battery)
+            dbus_speed.update(speed, rpm, battery)
             
             # Sleep for a second
             await asyncio.sleep(0.3)
