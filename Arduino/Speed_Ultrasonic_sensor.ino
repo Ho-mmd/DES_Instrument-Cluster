@@ -1,5 +1,5 @@
 // Libraries for LCD display (currently commented out)
-//#include <LiquidCrystal_I2C.h>
+#include <LiquidCrystal_I2C.h>
 //LiquidCrystal_I2C lcd (0x27, 16, 2);
 
 // Constants and settings for RPM calculations
