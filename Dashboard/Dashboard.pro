@@ -4,11 +4,13 @@ QT += qml quick core gui dbus
 
 # Input
 SOURCES += \
-        main.cpp
+        main.cpp \
+        #main_fun.cpp
 
 HEADERS += \
         main.h \
-        main.h
+        main.h \
+        #main_fun.h
 
 RESOURCES += qml.qrc
 
