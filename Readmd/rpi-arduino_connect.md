@@ -13,5 +13,5 @@
 
 ### Circuit Diagram
 
-<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/96e4e505-5bab-4c2d-bdda-d9076187b401" width="974" height="1132"/>
+<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/96e4e505-5bab-4c2d-bdda-d9076187b401" width="584" height="680"/>
 

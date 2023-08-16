@@ -2,7 +2,7 @@
 
 ### [Test Modules & Sensors with Arduino](https://github.com/Ho-mmd/DES_Project2/blob/main/Readmd/test_sensors_arduino.md)
 
-### [Conneting Arduino - Raspberry Pi using Can Connection]()
+### [Conneting Arduino - Raspberry Pi using Can Connection](https://github.com/Ho-mmd/DES_Project2/blob/main/Readmd/rpi-arduino_connect.md)
 
 
 
