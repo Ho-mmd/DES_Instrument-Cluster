@@ -224,10 +224,8 @@ Window {
                 anchors.horizontalCenter: parent.horizontalCenter
             }
 
-            function mapSpeedToAngle(speed) {
-                var angle = (speed / 140) * -180
-                return angle;
-            }
+
+            property real needleAngle: (canReceiver.speed / 140) * -180
 
             Image{
                 id: speedGaugeNeedle
@@ -236,21 +234,21 @@ Window {
                 width: 57
                 height: 214
                 source: "DashBoardImg/needle-standard-sport.png"
+                transformOrigin: Item.Left
                 transform: Rotation{
-                    origin.x: 160.5
-                    origin.y: speedGaugeNeedle.height
-
-                    //angle: mapSpeedToAngle(canReceiver.speed)
+                    origin.x: speedGaugeNeedle.width / 2
+                    origin.y: speedGaugeNeedle.height * 3 / 4
+                    angle: speedGauge.needleAngle
                 }
             }
+
+
         }
+
     }
+
 }
 
 
 
-/*##^##
-Designer {
-    D{i:0;formeditorZoom:1.33}
-}
-##^##*/
+
