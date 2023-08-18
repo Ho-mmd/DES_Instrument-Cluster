@@ -5,9 +5,9 @@
 #include <cmath>
 #include <QTimer>
 #include <dash_adaptor.h>
+#include <QDBusReply>
 
-
-CanReceiver::CanReceiver(): my_speed(0), my_rpm(0),my_battery(0), my_gear("OFF"){
+CanReceiver::CanReceiver(): my_speed(0), my_rpm(0),my_battery(0), my_gear("OFF"), my_errval(0){
 
     //Connect to D-Bus and Register and expose the interface
     QDBusConnection::sessionBus().registerService("com.example.CanData");
@@ -15,10 +15,12 @@ CanReceiver::CanReceiver(): my_speed(0), my_rpm(0),my_battery(0), my_gear("OFF")
     new CanReceiverAdaptor(this);
     QDBusConnection::sessionBus().registerObject("/com/example/CanData/Data", this);
 
+    QDBusInterface remotePy("com.example.Chkout", "/com/example/Chkout");
+
+    connect(this, SIGNAL(errchk(int, double, double, double, QString)), this, SLOT(setData(int, double, double, double, QString)));
     connect(this, SIGNAL(speedChanged(double)), this, SLOT(updateSpeed(double)));
     connect(this, SIGNAL(rpmChanged(double)), this, SLOT(updateRpm(double)));
     connect(this, SIGNAL(batteryChanged(double)), this, SLOT(updateBattery(double)));
-    // connect(this, SIGNAL(throttleChanged(bool)), this, SLOT(updateThrottle(bool)));
     connect(this, SIGNAL(gearChanged(QString)), this, SLOT(updateGear(QString)));
 
 }
@@ -39,25 +41,6 @@ QString CanReceiver::gear() const{
     return my_gear;
 }
 
-// bool CanReceiver::throttle() const{
-//     return my_throttle;
-// }
-
-//QString CanReceiver::gear() const{
-//    if(my_speed == 0){
-//        return "P";
-//    }
-//    else if(my_speed > 0 && my_throttle){
-//        return "D";
-//    }
-//    else if (my_speed > 0 && !my_throttle){
-//        return "R";
-//    }
-//    else{
-//        return "OFF";
-//    }
-//}
-
 
 void CanReceiver::updateSpeed(double speed){
     my_speed = std::round(speed * 10) / 10.0;
@@ -72,17 +55,23 @@ void CanReceiver::updateBattery(double battery){
     my_battery = int(battery);
     qDebug() << "Battery: " << my_battery;
 }
-// void CanReceiver::updateThrottle(bool throttle){
-//     my_throttle = throttle;
-//     qDebug() << "Throttle: " << my_throttle;
-// }
+
 void CanReceiver::updateGear(QString gear){
     my_gear = gear;
     qDebug() << "Gear: " << my_gear;
 }
 
+void CanReceiver::updateErrval(int errval) {
 
-void CanReceiver::setData(double my_speed, double my_rpm, double my_battery, QString my_gear){
+    if(errval == 0)
+        qDebug() << "Connection Failed!";
+    else if(my_errval != errval) {
+        my_errval = errval;
+        emit errchk(my_errval, my_speed, my_rpm, my_battery, my_gear);
+     }
+}
+
+void CanReceiver::setData(int errval, double my_speed, double my_rpm, double my_battery, QString my_gear){
 
     if(!std::isnan(my_speed)){
         emit speedChanged(my_speed);
@@ -93,9 +82,6 @@ void CanReceiver::setData(double my_speed, double my_rpm, double my_battery, QSt
     if(!std::isnan(my_battery)){
         emit batteryChanged(my_battery);
     }
-//    if(!std::isnan(my_throttle)){
-//        emit throttleChanged(my_throttle);
-//    }
     if(1){
         emit gearChanged(my_gear);
     }
