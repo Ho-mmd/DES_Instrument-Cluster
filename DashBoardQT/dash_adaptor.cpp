@@ -33,9 +33,9 @@ CanReceiverAdaptor::~CanReceiverAdaptor()
     // destructor
 }
 
-void CanReceiverAdaptor::setData(double my_speed, double my_rpm, double my_battery, const QString &my_gear)
+void CanReceiverAdaptor::setData(double speed, double rpm, double battery, const QString &gear)
 {
     // handle method call local.CanReceiver.setData
-    QMetaObject::invokeMethod(parent(), "setData", Q_ARG(double, my_speed), Q_ARG(double, my_rpm), Q_ARG(double, my_battery), Q_ARG(QString, my_gear));
+    QMetaObject::invokeMethod(parent(), "setData", Q_ARG(double, speed), Q_ARG(double, rpm), Q_ARG(double, battery), Q_ARG(QString, gear));
 }
 
