@@ -8,5 +8,7 @@
         <file>DashBoardImg/car-highlights.png</file>
         <file>DashBoardImg/bg-mask.png</file>
         <file>DashBoardImg/battery.png</file>
+        <file>DashBoardImg/Connection.png</file>
+        <file>DashBoardImg/Warning.png</file>
     </qresource>
 </RCC>

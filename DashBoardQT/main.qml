@@ -294,6 +294,36 @@ Window {
 
             }
 
+            Image {
+                id: connectStatus
+                x: 113
+                y: 355
+                width: 25
+                height: 25
+                source: "DashBoardImg/Warning.png"
+                rotation: -232.884
+                visible: !canReceiver.speed // Use speed as an indicator of D-Bus connection status
+
+                Text{
+                    id: connectStatus_t
+                    x: 3
+                    y: -19
+                    text: "D-Bus Connection Error"
+                    color : "red"
+                    visible: !canReceiver.speed
+                }
+                Connections {
+                    target: canReceiver
+
+                    onDataBusConnectedChanged: {
+                        connectStatus.visible = !isDBusConnected;
+                        connectStatus_t.visible = !isDBusConnected;
+                    }
+                }
+
+
+            }
+
 
 
         }
@@ -308,6 +338,6 @@ Window {
 
 /*##^##
 Designer {
-    D{i:0;formeditorZoom:8}
+    D{i:0;formeditorZoom:1.75}
 }
 ##^##*/
