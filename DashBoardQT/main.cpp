@@ -24,24 +24,10 @@ CanReceiver::CanReceiver(): my_speed(0), my_rpm(0),my_battery(0), my_gear("OFF")
 
 }
 
-void CanReceiver::setData(double speed, double rpm, double battery, QString gear){
-
-    if(!std::isnan(speed)){
-        emit speedChanged(speed);
-    }
-    if(!std::isnan(rpm)){
-        emit rpmChanged(rpm);
-    }
-    if(!std::isnan(battery)){
-        emit batteryChanged(battery);
-    }
-    if(!gear.isEmpty()){
-        emit gearChanged(gear);
-    }
-
+double CanReceiver::speed() const{
+    return my_speed;
 }
 
-<<<<<<< HEAD
 double CanReceiver::rpm() const{
     return my_rpm;
 }
@@ -54,6 +40,9 @@ QString CanReceiver::gear() const{
     return my_gear;
 }
 
+int CanReceiver::errval() const{
+    return my_errval;
+}
 
 void CanReceiver::updateSpeed(double speed){
     my_speed = std::round(speed*10)/10.0;
@@ -80,7 +69,7 @@ void CanReceiver::updateErrval(int errval) {
      }
 }
 
-void CanReceiver::setData(int errval, double my_speed, double my_rpm, double my_battery, QString my_gear){
+void CanReceiver::setData(double my_speed, double my_rpm, double my_battery, QString my_gear){
 
     if(!std::isnan(my_speed)){
         emit speedChanged(my_speed);
