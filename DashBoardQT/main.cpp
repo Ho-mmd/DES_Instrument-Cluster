@@ -3,7 +3,6 @@
 #include <QQmlContext>
 #include <main.h>
 #include <cmath>
-#include <QTimer>
 #include <dash_adaptor.h>
 #include <QDBusReply>
 
@@ -25,10 +24,24 @@ CanReceiver::CanReceiver(): my_speed(0), my_rpm(0),my_battery(0), my_gear("OFF")
 
 }
 
-double CanReceiver::speed() const{
-    return my_speed;
+void CanReceiver::setData(double speed, double rpm, double battery, QString gear){
+
+    if(!std::isnan(speed)){
+        emit speedChanged(speed);
+    }
+    if(!std::isnan(rpm)){
+        emit rpmChanged(rpm);
+    }
+    if(!std::isnan(battery)){
+        emit batteryChanged(battery);
+    }
+    if(!gear.isEmpty()){
+        emit gearChanged(gear);
+    }
+
 }
 
+<<<<<<< HEAD
 double CanReceiver::rpm() const{
     return my_rpm;
 }
@@ -43,22 +56,18 @@ QString CanReceiver::gear() const{
 
 
 void CanReceiver::updateSpeed(double speed){
-    my_speed = std::round(speed * 10) / 10.0;
-    qDebug() << "Speed: " << my_speed;
+    my_speed = std::round(speed*10)/10.0;
 }
 
 void CanReceiver::updateRpm(double rpm){
     my_rpm = std::round(rpm*10)/ 10.0;
-    qDebug() << "Rpm: " << my_rpm;
 }
 void CanReceiver::updateBattery(double battery){
     my_battery = int(battery);
-    qDebug() << "Battery: " << my_battery;
 }
 
 void CanReceiver::updateGear(QString gear){
     my_gear = gear;
-    qDebug() << "Gear: " << my_gear;
 }
 
 void CanReceiver::updateErrval(int errval) {
@@ -100,6 +109,7 @@ int main(int argc, char *argv[])
     CanReceiver canReceiver;
 
     engine.rootContext()->setContextProperty("canReceiver", &canReceiver);
+
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

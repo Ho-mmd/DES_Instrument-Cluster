@@ -33,10 +33,10 @@ class CanReceiverAdaptor: public QDBusAbstractAdaptor
     Q_CLASSINFO("D-Bus Introspection", ""
 "  <interface name=\"local.CanReceiver\">\n"
 "    <method name=\"setData\">\n"
-"      <arg direction=\"in\" type=\"d\" name=\"my_speed\"/>\n"
-"      <arg direction=\"in\" type=\"d\" name=\"my_rpm\"/>\n"
-"      <arg direction=\"in\" type=\"d\" name=\"my_battery\"/>\n"
-"      <arg direction=\"in\" type=\"s\" name=\"my_gear\"/>\n"
+"      <arg direction=\"in\" type=\"d\" name=\"speed\"/>\n"
+"      <arg direction=\"in\" type=\"d\" name=\"rpm\"/>\n"
+"      <arg direction=\"in\" type=\"d\" name=\"battery\"/>\n"
+"      <arg direction=\"in\" type=\"s\" name=\"gear\"/>\n"
 "    </method>\n"
 "  </interface>\n"
         "")
@@ -46,7 +46,7 @@ public:
 
 public: // PROPERTIES
 public Q_SLOTS: // METHODS
-    void setData(double my_speed, double my_rpm, double my_battery, const QString &my_gear);
+    void setData(double speed, double rpm, double battery, const QString &gear);
 Q_SIGNALS: // SIGNALS
 };
 
