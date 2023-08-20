@@ -1,13 +1,14 @@
 import asyncio
 from pydbus import SessionBus
 import time
+import sys
 
 bus = SessionBus()
 
 DBUS_INTERFACE = """
 <node>
     <interface name="com.example.Chkout">
-        <method name="shutdown">
+        <method name="handleError">
         </method>
     </interface>
 </node>
@@ -15,20 +16,27 @@ DBUS_INTERFACE = """
 
 class DbusData:
     bus = DBUS_INTERFACE
+    
+    def handleError(self):    
+        start_time = time.time()
+        while (1):
+            if(time.time() - start_time <= 1):
+                print("Trying to reconnect...")
+                try:
+                    bus.get("com.example.CanData", "/com/example/CanData/Data")
+                    print("Reconnected successfully!")
+                    return
+                except Exception as e:
+                    print("Connection attempt failed!")
+                    time.sleep(0.1)
+            else:
+                sys.exit(1)
 
-    def shutdown(self):
-        """Shutdown the system."""
-        print("Shutting down...")
-
-    def getErrVal(self, ErrVal):
-        self._ErrVal = ErrVal
-        
     def __init__(self):
-        self._ErrVal = 0
         start_time = time.time()
         while(time.time() - start_time < 10):
             try:
-                bus.get("com.example.CanData", "/com/example/CanData/Data")
+                self._dbus = bus.get("com.example.CanData", "/com/example/CanData/Data")
                 break
             except Exception as e:
                 print("Trying to Connect!!")
@@ -80,4 +88,3 @@ dbus_data = DbusData()
 
 # Start the asyncio main loop
 asyncio.run(send_data_incrementally(dbus_data))
-
