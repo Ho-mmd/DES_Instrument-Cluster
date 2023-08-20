@@ -40,7 +40,7 @@ Window {
                 x: 44
                 y: 150
                 text: "P"
-                color: canReceiver.gear === "P" ? "blue" : "white"
+                color: CarDash.gear === "P" ? "blue" : "white"
                 font.pixelSize: 14
                 rotation: -91.183
             }
@@ -50,7 +50,7 @@ Window {
                 x: 57
                 y: 108
                 text: "R"
-                color: canReceiver.gear === "R" ? "blue" : "white"
+                color: CarDash.gear === "R" ? "blue" : "white"
                 font.pixelSize: 14
                 rotation: -92.41
             }
@@ -60,7 +60,7 @@ Window {
                 x: 77
                 y: 67
                 text: "N"
-                color: canReceiver.gear === "N" ? "blue" : "white"
+                color: CarDash.gear === "N" ? "blue" : "white"
                 font.pixelSize: 14
                 rotation: -91.43
             }
@@ -70,7 +70,7 @@ Window {
                 x: 108
                 y: 33
                 text: "D"
-                color: canReceiver.gear === "D" ? "blue" : "white"
+                color: CarDash.gear === "D" ? "blue" : "white"
                 font.pixelSize: 14
                 rotation: -90.857
             }
@@ -79,7 +79,7 @@ Window {
                 id: mainGear
                 x: 87
                 y: 115
-                text : canReceiver.gear
+                text : CarDash.gear
                 font.pixelSize: 25
                 rotation: 268.792
                 color: "white"
@@ -216,7 +216,7 @@ Window {
                 id: currentSpeed
                 x: 182
                 y: 111
-                text: canReceiver.speed
+                text: CarDash.speed
                 color: "white"
                 font.pixelSize: 20
                 anchors.horizontalCenterOffset: 56
@@ -225,7 +225,7 @@ Window {
             }
 
 
-            property real needleAngle: (canReceiver.speed / 140) * -180
+            property real needleAngle: (CarDash.speed / 140) * -180
 
             Image{
                 id: speedGaugeNeedle
@@ -256,7 +256,7 @@ Window {
                     y: 19
                     anchors.left: parent.left
                     anchors.leftMargin: 30
-                    visible: canReceiver.battery > 0
+                    visible: CarDash.battery > 0
                     anchors.right: parent.right
                     anchors.rightMargin: 11
 
@@ -271,7 +271,7 @@ Window {
                     anchors.right: parent.right
                     anchors.top: parent.top
                     anchors.topMargin: 5
-                    text: Math.floor(canReceiver.battery) + "%"
+                    text: Math.floor(CarDash.battery) + "%"
                     color: "white"
                     font.pixelSize: 12
                     font.family: "Sarabun"
@@ -302,7 +302,7 @@ Window {
                 height: 25
                 source: "DashBoardImg/Warning.png"
                 rotation: -232.884
-                visible: !canReceiver.speed // Use speed as an indicator of D-Bus connection status
+                visible: CarDash.errval === -1 // Use speed as an indicator of D-Bus connection status
 
                 Text{
                     id: connectStatus_t
@@ -310,10 +310,10 @@ Window {
                     y: -19
                     text: "D-Bus Connection Error"
                     color : "red"
-                    visible: !canReceiver.speed
+                    visible: CarDash.errval === -1
                 }
                 Connections {
-                    target: canReceiver
+                    target: CarDash
 
                     onDataBusConnectedChanged: {
                         connectStatus.visible = !isDBusConnected;

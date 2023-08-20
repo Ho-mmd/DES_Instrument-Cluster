@@ -24,14 +24,14 @@ class QVariant;
 QT_END_NAMESPACE
 
 /*
- * Adaptor class for interface local.CanReceiver
+ * Adaptor class for interface local.carDash
  */
-class CanReceiverAdaptor: public QDBusAbstractAdaptor
+class CarDashAdaptor: public QDBusAbstractAdaptor
 {
     Q_OBJECT
-    Q_CLASSINFO("D-Bus Interface", "local.CanReceiver")
+    Q_CLASSINFO("D-Bus Interface", "local.carDash")
     Q_CLASSINFO("D-Bus Introspection", ""
-"  <interface name=\"local.CanReceiver\">\n"
+"  <interface name=\"local.carDash\">\n"
 "    <method name=\"setData\">\n"
 "      <arg direction=\"in\" type=\"d\" name=\"speed\"/>\n"
 "      <arg direction=\"in\" type=\"d\" name=\"rpm\"/>\n"
@@ -41,8 +41,8 @@ class CanReceiverAdaptor: public QDBusAbstractAdaptor
 "  </interface>\n"
         "")
 public:
-    CanReceiverAdaptor(QObject *parent);
-    virtual ~CanReceiverAdaptor();
+    CarDashAdaptor(QObject *parent);
+    virtual ~CarDashAdaptor();
 
 public: // PROPERTIES
 public Q_SLOTS: // METHODS

@@ -18,24 +18,24 @@
 #include <QtCore/QVariant>
 
 /*
- * Implementation of adaptor class CanReceiverAdaptor
+ * Implementation of adaptor class CarDashAdaptor
  */
 
-CanReceiverAdaptor::CanReceiverAdaptor(QObject *parent)
+CarDashAdaptor::CarDashAdaptor(QObject *parent)
     : QDBusAbstractAdaptor(parent)
 {
     // constructor
     setAutoRelaySignals(true);
 }
 
-CanReceiverAdaptor::~CanReceiverAdaptor()
+CarDashAdaptor::~CarDashAdaptor()
 {
     // destructor
 }
 
-void CanReceiverAdaptor::setData(double speed, double rpm, double battery, const QString &gear)
+void CarDashAdaptor::setData(double speed, double rpm, double battery, const QString &gear)
 {
-    // handle method call local.CanReceiver.setData
+    // handle method call local.carDash.setData
     QMetaObject::invokeMethod(parent(), "setData", Q_ARG(double, speed), Q_ARG(double, rpm), Q_ARG(double, battery), Q_ARG(QString, gear));
 }
 
