@@ -20,6 +20,22 @@ DBUS_INTERFACE = """
 </node>
 """
 
+class ThrottleHandler:
+    def __init__(self):
+        self.last_throttle_time = time.time()
+        self.throttle = -0.038
+
+    def update(self, new_throttle):
+        self.throttle = new_throttle
+        self.last_throttle_time = time.time()
+    
+    def get_throttle(self):
+        current_time = time.time()
+        if current_time - self.last_throttle_time > 3:
+            return self.throttle
+        return None
+throttle_handler = ThrottleHandler()
+
 class DbusData:
     """A class to interact with D-Bus and represent data."""
     
@@ -70,16 +86,21 @@ async def receive_can_data(dbus_data):
             rpm, speed = struct.unpack('<ff', data)
 
             gamepad_input = shanwan_gamepad.read_data()
-            throttle = gamepad_input.analog_stick_left.y
+            new_throttle = gamepad_input.analog_stick_left.y
+            throttle_handler.update(new_throttle)
 
             if(speed == 0):
                 gear = "P"
-            elif(speed > 0 and throttle > -0.038):
-                gear = "D"
-            elif(speed > 0 and throttle <= -0.038):
-                gear = "R"
             else:
-                gear = "OFF"
+                current_throttle = throttle_handler.get_throttle()
+                if current_throttle is None:
+                    gear = "OFF"
+                elif speed > 0 and current_throttle > -0.038:
+                    gear = "D"
+                elif speed > 0 and current_throttle <= -0.038:
+                    gear = "R"
+                else:
+                    gear = "OFF"
 
             # Update values in dbus_speed
             dbus_data.update(speed, rpm, (((piracer.get_battery_voltage() / 3) - 2.5) / 1.7) * 100, gear)

@@ -240,7 +240,7 @@ Window {
                     origin.x: speedGaugeNeedle.width / 2
                     origin.y: speedGaugeNeedle.height * 3 / 4
                     angle: speedGauge.needleAngle
-                    Behavior on angle { RotationAnimation { duration: leftcluster.update_interval} }
+                    Behavior on angle { RotationAnimation { duration: speedGaugeNeedle.update_interval} }
 
                 }
 

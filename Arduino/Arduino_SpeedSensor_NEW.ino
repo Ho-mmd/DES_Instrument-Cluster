@@ -8,13 +8,13 @@
 MCP_CAN CAN0(9);
 
 #define WheelDiameter 0.065 
-#define SensorDiameter 0.0025 
+#define SensorDiameter 0.025 
 
 #define WheelRadius 0.0325
 #define WheelCircumference (2 * PI * WheelRadius) 
 
 float RPM_w = 0;
-const byte PulsesPerRevolution = 2;
+const byte PulsesPerRevolution = 20;
 const unsigned long ZeroTimeout = 100000;
 const byte numReadings = 2;
 

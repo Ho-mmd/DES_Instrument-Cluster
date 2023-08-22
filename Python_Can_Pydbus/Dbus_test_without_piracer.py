@@ -78,7 +78,7 @@ async def send_data_incrementally(dbus_data):
         if(dbus_data._current_throttle <= -1):
             dbus_data._current_throttle = 1
 
-        dbus_data.update(dbus_data._current_speed + 1, dbus_data._current_rpm + 1, 
+        dbus_data.update(dbus_data._current_speed + 10, dbus_data._current_rpm + 1, 
                          dbus_data._current_battery, dbus_data._current_gear)
         
         # Sleep for a second
