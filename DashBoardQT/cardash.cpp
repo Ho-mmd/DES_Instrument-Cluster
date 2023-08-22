@@ -115,7 +115,7 @@ void                    carDash::checkErrVal()
                                             my_errvalSwitchCount                        = 0;
                         }
 
-                        if  (my_errvalSwitchCount == 5)
+                        if  (my_errvalSwitchCount == 3)
                         {
                                             my_errval                                   = -1;
                                             emit                                        errchk();
@@ -127,7 +127,7 @@ void                    carDash::checkErrVal()
                                             qDebug() << "error";
                         }
 
-                        if  (my_errvalSwitchCount >= 10)
+                        if  (my_errvalSwitchCount >= 7)
                         {
                                             QCoreApplication::exit(0);
                         }
