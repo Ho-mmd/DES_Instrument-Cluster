@@ -94,7 +94,7 @@ def receive_can_data(dbus_data):
             else:
                 gear = "OFF"
             
-            battery_percentage = ((((piracer.get_battery_voltage() / 3) - 2.5) / 1.7) * 100)
+            battery_percentage = ((((piracer.get_battery_voltage() / 3) - 3.1) / 1.1) * 100)
             dbus_data.update(300 * speed, rpm, battery_percentage, gear)
              
 
