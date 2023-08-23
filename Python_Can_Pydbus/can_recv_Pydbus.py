@@ -91,4 +91,3 @@ dbus_data = DbusData()
 
 # Start receiving CAN data and run the asyncio main loop
 asyncio.run(receive_can_data(dbus_data))
-
