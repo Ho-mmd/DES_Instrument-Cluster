@@ -99,11 +99,4 @@ def receive_can_data(dbus_data):
              
 
 dbus_data = DbusData()
-<<<<<<< HEAD
 receive_can_data(dbus_data)
-
-=======
-
-# Start receiving CAN data and run the asyncio main loop
-asyncio.run(receive_can_data(dbus_data))
->>>>>>> origin
