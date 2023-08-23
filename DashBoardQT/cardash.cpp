@@ -45,7 +45,7 @@ int                     carDash::errval()       const
 
 void                    carDash::updateSpeed(double speed)
 {
-    my_speed            = std::round(speed*10)/10.0;
+    my_speed            = int(speed);
 }
 
 void                    carDash::updateRpm(double rpm)
@@ -86,6 +86,7 @@ void                    carDash::setData(double my_speed, double my_rpm, double 
     {
                         QMutexLocker locker(&mutex);
                         my_errval           = (my_errval == 1) ? 2 : 1;
+                        my_errvalSwitchCount                        = 0;
     }
 
     emit                errchk();
@@ -110,12 +111,13 @@ void                    carDash::checkErrVal()
                         {
                                             my_errvalSwitchCount++;
                         }
-                        else
+
+                        if  (3 <my_errvalSwitchCount && my_errvalSwitchCount < 7)
                         {
-                                            my_errvalSwitchCount                        = 0;
+                                            callHandleErrorOnPython();
                         }
 
-                        if  (my_errvalSwitchCount == 3)
+                        if  (my_errvalSwitchCount >= 7)
                         {
                                             my_errval                                   = -1;
                                             emit                                        errchk();
@@ -123,12 +125,7 @@ void                    carDash::checkErrVal()
                                             emit                                        rpmChanged(my_rpm);
                                             emit                                        batteryChanged(-1);
                                             emit                                        gearChanged("OFF");
-                                            callHandleErrorOnPython();
-                                            qDebug() << "error";
-                        }
-
-                        if  (my_errvalSwitchCount >= 7)
-                        {
+                                            QThread::sleep(2);
                                             QCoreApplication::exit(0);
                         }
 

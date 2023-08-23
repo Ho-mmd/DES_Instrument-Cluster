@@ -76,9 +76,22 @@ def receive_can_data(dbus_data):
             # Apply Bessel filter only to speed
             speed, zi_speed = bessel_filter([speed], zi_speed)
 
+<<<<<<< HEAD
             battery_percentage = ((((piracer.get_battery_voltage() / 3) - 2.5) / 1.7) * 100)
             dbus_data.update(300 * speed, rpm, battery_percentage)
+=======
+        dbus_data.update(dbus_data._current_speed + 10, dbus_data._current_rpm + 1, 
+                         dbus_data._current_battery, dbus_data._current_gear)
+        
+        # Sleep for a second
+        await asyncio.sleep(0.3)
+>>>>>>> origin
 
 dbus_data = DbusData()
 receive_can_data(dbus_data)
 
+<<<<<<< HEAD
+=======
+# Start the asyncio main loop
+asyncio.run(send_data_incrementally(dbus_data))
+>>>>>>> origin

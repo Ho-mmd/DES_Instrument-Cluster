@@ -226,6 +226,7 @@ Window {
 
 
             property real needleAngle: (CarDash.speed / 140) * -180
+            property int update_interval: 200
 
             Image{
                 id: speedGaugeNeedle
@@ -239,7 +240,10 @@ Window {
                     origin.x: speedGaugeNeedle.width / 2
                     origin.y: speedGaugeNeedle.height * 3 / 4
                     angle: speedGauge.needleAngle
+                    Behavior on angle { RotationAnimation { duration: speedGaugeNeedle.update_interval} }
+
                 }
+
             }
 
             Item {
