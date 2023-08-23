@@ -267,7 +267,7 @@ Window {
                     Rectangle {
                         color: "green";
                         height: parent.height;
-                        width: Math.max(0.7 * canReceiver.battery, 0);
+                        width: Math.max(0.7 * CarDash.battery, 0);
                     }
                 }
 
@@ -316,27 +316,10 @@ Window {
                     color : "red"
                     visible: CarDash.errval === -1
                 }
-                Connections {
-                    target: CarDash
-
-                    onDataBusConnectedChanged: {
-                        connectStatus.visible = !isDBusConnected;
-                        connectStatus_t.visible = !isDBusConnected;
-                    }
-                }
-
-
             }
-
-
-
         }
-
     }
-
 }
-
-
 
 
 
