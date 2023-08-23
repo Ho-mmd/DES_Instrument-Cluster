@@ -87,10 +87,10 @@ void loop() {
 
 
   byte rpmData[8];
-    float tempRPM = RPM_w;
-    float tempSpeed = speed_mps;
-    memcpy(rpmData, &tempRPM, 4);
-    memcpy(rpmData + 4, &tempSpeed, 4);
+	float tempRPM = RPM_w;
+	float tempSpeed = speed_mps;
+	memcpy(rpmData, &tempRPM, 4);
+	memcpy(rpmData + 4, &tempSpeed, 4);
 
 
     // Send the CAN message.
