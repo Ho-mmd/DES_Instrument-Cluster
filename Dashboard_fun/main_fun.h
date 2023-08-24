@@ -1,6 +1,6 @@
 // Prevents the header from being included multiple times in a single compilation.
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef MAIN_FUN_H
+#define MAIN_FUN_H
 
 // Necessary includes for the class.
 #include <QObject>           // Base class for objects in Qt's object system.
@@ -55,4 +55,4 @@ private:
 };
 
 // Ends the header guard.
-#endif // MAIN_H
+#endif // MAIN_FUN_H

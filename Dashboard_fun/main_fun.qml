@@ -122,24 +122,7 @@ ApplicationWindow {
 
             source: parent.gifSources[canReceiver.battery1]
         }
-
-
     }
 }
 
-
-//    Column {
-//        anchors.centerIn: parent
-//        spacing: 20
-
-//        Text {
-//            text: "Speed: " + canReceiver.speed + " km/h"
-//            font.pixelSize: 24
-//        }
-
-//        Text {
-//            text: "RPM: " + canReceiver.rpm
-//            font.pixelSize: 24
-//        }
-//    }
 
