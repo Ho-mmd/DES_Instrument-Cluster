@@ -11,9 +11,9 @@
 ##### - Ultrasonic Sensor (HY-SRF05)
 
 ### Simple Description of the code
-##### - Arduino_SpeedSensor.ino: Test code about Speed sensor
+##### - SpeedSensor.ino: Test code about Speed sensor
 ##### - Speed_Ultrasonic_sensor.ino: Test code about Speed sensor and Ultrasonic seneor 
-##### - Arduino_SpeedSensor_CAN.ino: Test code about Speed sensor and Can module (Shield)
+##### - SpeedSensor_Can_Connect.ino: Test code about Speed sensor and Can module (Shield)
 
 ### Circuit Diagram
 
