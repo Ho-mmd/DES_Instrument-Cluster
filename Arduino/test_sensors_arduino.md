@@ -5,7 +5,7 @@
 ###### - Arduino Nano
 ###### - [Seeed Studio_CAN-BUS Shield V2.0](https://wiki.seeedstudio.com/CAN-BUS_Shield_V2.0/)
 ###### - MH Infrared Speed Sensor Module (FC-03)
-###### - Joy It_CAN MODULE
+###### - [Joy It_CAN MODULE](https://joy-it.net/en/products/SBC-CAN01)
 ###### - Ultrasonic Sensor (HY-SRF05)
 
 ## Test Ultrasonic & Speed Sensor with Can connection
