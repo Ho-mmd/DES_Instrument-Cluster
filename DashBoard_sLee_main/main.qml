@@ -12,7 +12,6 @@ Window {
     title: qsTr("PiRacer_DashBoard")
 
 
-
     Rectangle {
         id: rectangle
         x: 0
