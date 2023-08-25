@@ -4,8 +4,9 @@
 ### H/W
 ##### - Waveshare_JetRacer (PiRacer_Standard AI Kit)
 ##### - Arduino Uno
-##### - MH Infrared Speed Sensor Module (FC-03)
 ##### - Seeed Studio_CAN-BUS Shield V2.0
+##### - MH Infrared Speed Sensor Module (FC-03)
+##### - Ultrasonic Sensor (HY-SRF05)
 ##### - Raspberry Pi 4B
 ##### - WaveShare_2-CH CAN FD HAT
 ##### - WaveShare_7.9inch DSI LCD
