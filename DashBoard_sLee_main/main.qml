@@ -10,8 +10,7 @@ Window {
     height: 400
     visible: true
     title: qsTr("PiRacer_DashBoard")
-
-
+    visibility: Window.FullScreen
 
     Rectangle {
         id: rectangle
