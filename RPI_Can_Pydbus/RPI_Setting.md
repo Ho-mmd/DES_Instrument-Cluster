@@ -1,4 +1,4 @@
-# Conneting Raspberry Pi using CAN Connection
+# Setting Raspberry Pi using CAN and D-Bus
 
 ### Using
 ###### - Raspberry Pi 4B
