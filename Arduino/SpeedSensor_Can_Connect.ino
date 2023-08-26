@@ -15,7 +15,8 @@ MCP_CAN CAN0(9);
 
 float RPM_w = 0;
 const byte PulsesPerRevolution = 20;
-const unsigned long ZeroTimeout = 100000;
+
+const unsigned long ZeroTimeout = 100000; //Microseconds
 const byte numReadings = 2;
 
 volatile unsigned long LastTimeWeMeasured;
@@ -55,6 +56,9 @@ void loop() {
   if (CurrentMicros < LastTimeCycleMeasure) {
     LastTimeCycleMeasure = CurrentMicros;
   }
+  
+  //Change PeriodAverage sec to microsec
+  
   FrequencyRaw = 10000000000 / PeriodAverage;
   if (PeriodBetweenPulses > ZeroTimeout - ZeroDebouncingExtra || CurrentMicros - LastTimeCycleMeasure > ZeroTimeout - ZeroDebouncingExtra) {
     FrequencyRaw = 0;  // Set frequency as 0.

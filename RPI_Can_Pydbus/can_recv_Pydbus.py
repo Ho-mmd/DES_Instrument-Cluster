@@ -3,6 +3,7 @@ import struct
 from pydbus import SessionBus
 import asyncio
 import time
+import numpy as np
 from scipy.signal import bessel, lfilter
 from piracer.vehicles import PiRacerStandard
 from piracer.gamepads import ShanWanGamepad
@@ -58,11 +59,9 @@ class DbusData:
         self._current_gear = gear
         print(f"Received RPM: {self._current_rpm}, Speed: {self._current_speed} Battery: {self._current_battery}, Gear: {self._current_gear}")
         self._dbus.setData(speed, rpm, battery, gear)
-        print("1")
 
 def receive_can_data(dbus_data):
     can_bus = can.interface.Bus(channel='can0', bustype='socketcan')
-    print("2")
     
     zi_speed = [0.0] * order
 
@@ -73,7 +72,6 @@ def receive_can_data(dbus_data):
         message = loop.run_until_complete(asyncio.to_thread(can_bus.recv))
         if message is not None:
             data = message.data
-            print("4")
             rpm, speed = struct.unpack('<ff', data)
             
             # Apply Bessel filter only to speed
@@ -83,7 +81,7 @@ def receive_can_data(dbus_data):
                 speed = 0
 
             throttle = 1 
-            print("5")
+  
             # Continue with the rest of the logic
             if(speed == 0 or rpm == 0):
                 gear = "P"
@@ -95,6 +93,7 @@ def receive_can_data(dbus_data):
                 gear = "OFF"
             
             battery_percentage = ((((piracer.get_battery_voltage() / 3) - 3.1) / 1.1) * 100)
+
             dbus_data.update(300 * speed, rpm, battery_percentage, gear)
              
 
