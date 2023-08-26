@@ -20,5 +20,8 @@
 
 ## Setting Arduino for Can connection with Rpi
 
+### CAN (Controller Area Network)
+##### Can communication is designed for communication between microcontrollers. Up to 2032 devices can be connected to one canvas in one single network. However, in practice, fewer devices are connected and used, supporting speeds of up to 1 Mbit/sec. There is a function of error restrictions, error searches.
+
 ### Simple Description of the code
 ###### - SpeedSensor_Can_Connect.ino: Test code about Speed sensor and Can module (Shield)
