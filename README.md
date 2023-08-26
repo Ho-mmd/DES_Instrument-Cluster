@@ -1,5 +1,11 @@
 # SEA:ME / DES_Project2
 
+## Design
+<img src = "https://github.com/Ho-mmd/DES_Project2/assets/55338823/f6a5366d-0a50-48cd-9aad-fbfc7fda2c96">
+
+## System Architecture
+<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/9dc4cfc3-2f0c-45db-83cf-1ba8bcfc6712">
+
 ## Environment Setting
 ### H/W
 ##### - Waveshare_JetRacer (PiRacer_Standard AI Kit)
@@ -16,13 +22,10 @@
 ### S/W
 ##### - Laptop: Ubuntu 20.04
 ##### - Raspberry Pi: Rasbian Desktop 64bit
-##### - IDE: Vscode, Qt5
+##### - IDE: Vscode, Qt5, Arduino IDE
+##### - Technology: CAN, DBUS
 
-## System Architecture
-
-<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/9dc4cfc3-2f0c-45db-83cf-1ba8bcfc6712">
-
-## Steps
+## Contents
 
 ### - [Test Modules & Sensors with Arduino](https://github.com/Ho-mmd/DES_Project2/blob/main/Arduino/test_sensors_arduino.md)
 
