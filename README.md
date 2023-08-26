@@ -29,7 +29,7 @@
 
 ### - [Arduino_Setting](https://github.com/Ho-mmd/DES_Project2/blob/main/Arduino/Arduino_Setting.md)
 
-### - [Conneting Arduino - Raspberry Pi using Can Connection](https://github.com/Ho-mmd/DES_Project2/blob/main/RPI_Can_Pydbus/rpi-arduino_connect.md)
+### - [Conneting Arduino - Raspberry Pi using Can Connection](https://github.com/Ho-mmd/DES_Project2/blob/main/RPI_Can_Pydbus/RPI-Setting.md)
 
 ### - [Show the Battery Level and External IP Address in Piracer OLED](https://github.com/Ho-mmd/DES_Project2/blob/main/Piracer_OLED/battery_ip_in_OLED.md)
 
