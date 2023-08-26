@@ -35,7 +35,7 @@
 
 ### - [CrossCompile Qt5 between ubuntu 20.04 - Raspbian Desktop 64bit](https://github.com/Ho-mmd/DES_Project2/blob/main/DashBoard_sLee_main/Crosscompile.md)
 
-### - [Dashboard_Desing_main]()
+### - [Dashboard_Desing_main](https://github.com/Ho-mmd/DES_Project2/blob/main/DashBoard_sLee_main/Dashboard_Design.md)
 
 ### - [Dashboard_Desing_Ilgizar]()
 
