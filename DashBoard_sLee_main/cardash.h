@@ -23,44 +23,45 @@ class carDash   :   public QObject
     Q_PROPERTY                              (int errval READ errval NOTIFY errchk)
 
 public:
-    carDash();
-    double      speed()                     const;
-    double      rpm()                       const;
-    double      battery()                   const;
-    QString     gear()                      const;
-    int         errval()                    const;
+    carDash();                                                                                              // This is the constructor. It sets the initial values of the car's speed, rpm, battery, gear, and error value.
+    ~carDash();                                                                                             // This is the destructor. It cleans up when the object is deleted.
+    double      speed()                     const;                                                          // This function returns the current speed of the car.
+    double      rpm()                       const;                                                          // This function returns the current rpm of the car.
+    double      battery()                   const;                                                          // This function returns the current battery of the car.
+    QString     gear()                      const;                                                          // This function returns the current gear of the car.
+    int         errval()                    const;                                                          // This function returns the current error value.
 
 signals:
-    void        speedChanged                (double speed);
-    void        rpmChanged                  (double rpm);
-    void        batteryChanged              (double battery);
-    void        gearChanged                 (QString gear);
+    void        speedChanged                (double speed);                                                 // This signal is emitted when the speed of the car changes.
+    void        rpmChanged                  (double rpm);                                                   // This signal is emitted when the rpm of the car changes.
+    void        batteryChanged              (double battery);                                               // This signal is emitted when the battery percentage of the car changes.
+    void        gearChanged                 (QString gear);                                                 // This signal is emitted when the gear
 
-    void        errchk                      ();
+    void        errchk                      ();                                                             // This signal is emitted when the error value should be checked.
 
 public slots:
-    void        setData                     (double speed, double rpm, double battery, QString gear);
+    void        setData                     (double speed, double rpm, double battery, QString gear);       // This function sets the new values of the car's speed, rpm, battery, and gear, and emits signals that these values have changed.
 
-    void        updateSpeed                 (double speed);
-    void        updateRpm                   (double rpm);
-    void        updateBattery               (double battery);
-    void        updateGear                  (QString gear);
+    void        updateSpeed                 (double speed);                                                 // This function updates the speed of the car.
+    void        updateRpm                   (double rpm);                                                   // This function updates the rpm of the car.
+    void        updateBattery               (double battery);                                               // This function updates the battery percentage of the car.
+    void        updateGear                  (QString gear);                                                 // This function updates the gear of the car.
 
-    void        checkErrVal                 ();
-    void        startThread                 ();
-    void        callHandleErrorOnPython     ();
+    void        checkErrVal                 ();                                                             // This function continuously checks the error value and calls the handleErrorOnPython function if necessary.
+    void        startThread                 ();                                                             // This function starts a new thread to check the error value.
+    void        callHandleErrorOnPython     ();                                                             // This function calls the handleError function in a Python program via the D-Bus.
 
 private:
-    double      my_speed;
-    double      my_rpm;
-    double      my_battery;
-    QString     my_gear;
+    double      my_speed;                                                                                   // This is the current speed of the car.
+    double      my_rpm;                                                                                     // This is the current rpm of the car.
+    double      my_battery;                                                                                 // This is the current battery percentage of the car.
+    QString     my_gear;                                                                                    // This is the current gear of the car.
 
-    int         my_errval;
-    int         previous_errval             = 0;
-    int         my_errvalSwitchCount        = 0;
-    QThread*    errvalCheckThread;
-    QMutex      mutex;
+    int         my_errval;                                                                                  // This is the current error value.
+    int         previous_errval             = 0;                                                            // This is the previous error value.
+    int         my_errvalSwitchCount        = 0;                                                            // This is the count of how many times the error value has switched between 1 and 2.
+    QThread*    errvalCheckThread;                                                                          // This is the thread that checks the error value.
+    QMutex      mutex;                                                                                      // This is a mutex used to lock the error value when it is being updated.
 
 };
 
