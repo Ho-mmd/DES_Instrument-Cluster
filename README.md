@@ -37,6 +37,6 @@
 
 ### - [Dashboard_Desing_main](https://github.com/Ho-mmd/DES_Project2/blob/main/DashBoard_sLee_main/Dashboard_Design.md)
 
-### - [Dashboard_Desing_Ilgizar]()
+### - [Dashboard_Desing_Ilgizar](https://github.com/Ho-mmd/DES_Project2/blob/main/Dashboard_Ilgizar/Dashboard_Design.md)
 
 ### - [Dashboard_Desing_fun]()
