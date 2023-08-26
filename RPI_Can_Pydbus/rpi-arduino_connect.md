@@ -1,17 +1,12 @@
-# Conneting Arduino - Raspberry Pi using Can Connection
+# Conneting Raspberry Pi using Can Connection
 
 ### Using
-##### - Speed sensor
-##### - Raspberry Pi 4B
-##### - Can Hat
-##### - Can Shield
-##### - Arduino Uno
-
-### Test Code ["Arduino" Folder](https://github.com/Ho-mmd/DES_Project2/tree/main/Arduino), ["Python_Can_Pydbus" Folder](https://github.com/Ho-mmd/DES_Project2/tree/main/Python_Can_Pydbus)
-##### - Arduino_SpeedSensor_CAN.ino: Test code about Speed sensor and Can Shield
-##### - can_data_reciver.py: Receive Can Data using python
+###### - Raspberry Pi 4B
+###### - WaveShare_2-CH CAN FD HAT
 
 ### Circuit Diagram
 
-<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/96e4e505-5bab-4c2d-bdda-d9076187b401" width="584" height="680"/>
+<img src = "https://github.com/Ho-mmd/DES_Project2/assets/55338823/2ebd3967-d65f-4534-bec2-42016171c267" width = 80% height = 80%>
 
+### Simple Description of the code
+###### - can_data_reciver.py: Receive Can Data using python
