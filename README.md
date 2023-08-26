@@ -1,5 +1,11 @@
 # SEA:ME / DES_Project2
 
+## Design
+<img src = "https://github.com/Ho-mmd/DES_Project2/assets/55338823/f6a5366d-0a50-48cd-9aad-fbfc7fda2c96">
+
+## System Architecture
+<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/9dc4cfc3-2f0c-45db-83cf-1ba8bcfc6712">
+
 ## Environment Setting
 ### H/W
 ##### - Waveshare_JetRacer (PiRacer_Standard AI Kit)
@@ -16,22 +22,21 @@
 ### S/W
 ##### - Laptop: Ubuntu 20.04
 ##### - Raspberry Pi: Rasbian Desktop 64bit
-##### - IDE: Vscode, Qt5
+##### - IDE: Vscode, Qt5, Arduino IDE
+##### - Technology: CAN, DBUS
 
-## System Architecture
+## Contents
 
-<img src="https://github.com/Ho-mmd/DES_Project2/assets/55338823/9dc4cfc3-2f0c-45db-83cf-1ba8bcfc6712">
+### - [Arduino_Setting](https://github.com/Ho-mmd/DES_Project2/blob/main/Arduino/Arduino_Setting.md)
 
-## Steps
-
-### - [Test Modules & Sensors with Arduino](https://github.com/Ho-mmd/DES_Project2/blob/main/Arduino/test_sensors_arduino.md)
-
-### - [Conneting Arduino - Raspberry Pi using Can Connection](https://github.com/Ho-mmd/DES_Project2/blob/main/RPI_Can_Pydbus/rpi-arduino_connect.md)
+### - [RPI_Setting](https://github.com/Ho-mmd/DES_Project2/blob/main/RPI_Can_Pydbus/RPI_Setting.md)
 
 ### - [Show the Battery Level and External IP Address in Piracer OLED](https://github.com/Ho-mmd/DES_Project2/blob/main/Piracer_OLED/battery_ip_in_OLED.md)
 
-### - [CrossCompile Qt5 between ubuntu 20.04 - Raspbian Desktop 64bit](https://github.com/Ho-mmd/DES_Project2/blob/main/DashBoard_sLee_main/Crosscompile.md)
+### - [CrossCompile Qt5 between ubuntu 20.04 - Raspbian Desktop 64bit](https://github.com/Ho-mmd/DES_Project2/blob/main/RPI_Can_Pydbus/Crosscompile.md)
 
-### - [Design Cluster using Qt5]
+### - [Dashboard_Desing_main](https://github.com/Ho-mmd/DES_Project2/blob/main/DashBoard_sLee_main/Dashboard_Design.md)
 
-### - [Show cluster through LCD]
+### - [Dashboard_Desing_Ilgizar](https://github.com/Ho-mmd/DES_Project2/blob/main/Dashboard_Ilgizar/Dashboard_Design.md)
+
+### - [Dashboard_Desing_fun](https://github.com/Ho-mmd/DES_Project2/blob/main/Dashboard_fun/Dashboard_Design.md)

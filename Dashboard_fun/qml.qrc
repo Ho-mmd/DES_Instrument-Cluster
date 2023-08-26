@@ -1,6 +1,5 @@
 <RCC>
     <qresource prefix="/">
-        <file>main.qml</file>
         <file>images/bat_0.gif</file>
         <file>images/bat_1.gif</file>
         <file>images/bat_2.gif</file>
@@ -48,5 +47,6 @@
         <file>images/hubo4-23.png</file>
         <file>images/hubo4-24.png</file>
         <file>images/background.png</file>
+        <file>main_fun.qml</file>
     </qresource>
 </RCC>
