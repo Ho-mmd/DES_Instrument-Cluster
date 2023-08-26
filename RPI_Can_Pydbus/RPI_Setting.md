@@ -6,6 +6,55 @@
 ###### - WaveShare_2-CH CAN FD HAT
 ###### - WaveShare_7.9inch DSI LCD
 
+## Connect Rpi with CAN FD HAT
+  1. Enable I2C interface
+  2. Install libraries
+  
+  ```bash
+  #bcm2835
+
+  wget http://www.airspayce.com/mikem/bcm2835/bcm2835-1.60.tar.gz
+  tar zxvf bcm2835-1.60.tar.gz 
+  cd bcm2835-1.60/
+  sudo ./configure
+  sudo make
+  sudo make check
+  sudo make install
+  # For more information, please refer to the official website: http://www.airspayce.com/mikem/bcm2835/
+  ```
+
+  ```bash
+  #Wiring Pi
+
+  sudo apt-get install wiringpi
+  #For Raspberry Pi 4B may need to be upgraded:
+  wget https://project-downloads.drogon.net/wiringpi-latest.deb
+  sudo dpkg -i wiringpi-latest.deb
+  gpio -v
+  # Run gpio -v and version 2.52 will appear. If it does not appear, the installation is wrong
+  ```
+
+  ```bash
+  #Python Libraries
+
+  sudo apt-get update
+  sudo apt-get install python3-pip
+  sudo apt-get install python3-pil
+  sudo apt-get install python3-numpy
+  sudo pip3 install RPi.GPIO
+  sudo pip3 install spidev 
+  sudo pip3 install python-can
+  ```
+
+  3. Configure CAN
+  ```bash
+  sudo ip link set can0 up type can bitrate 1000000 dbitrate 8000000 restart-ms 1000 berr-reporting on fd on
+  sudo ip link set can1 up type can bitrate 1000000 dbitrate 8000000 restart-ms 1000 berr-reporting on fd on
+  ```
+
+  ### Reference
+  [WaveShare_2-CH CAN FD HAT](https://www.waveshare.com/wiki/2-CH_CAN_FD_HAT)
+  
 ## Connect Rpi with DSI LCD
 
 ### S/W Setting
@@ -64,7 +113,7 @@ dtoverlay=WS_xinchDSI_Touch,invertedx,invertedy  <br/>
   ```
 
 ### Reference
-[7.9 inch DSI_LCD](https://www.waveshare.com/wiki/7.9inch_DSI_LCD)
+[WaveShare_7.9inch DSI LCD](https://www.waveshare.com/wiki/7.9inch_DSI_LCD)
 
 ## Setting Arduino for CAN connection with Rpi
 
