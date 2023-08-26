@@ -39,4 +39,4 @@
 
 ### - [Dashboard_Desing_Ilgizar](https://github.com/Ho-mmd/DES_Project2/blob/main/Dashboard_Ilgizar/Dashboard_Design.md)
 
-### - [Dashboard_Desing_fun]()
+### - [Dashboard_Desing_fun](https://github.com/Ho-mmd/DES_Project2/blob/main/Dashboard_fun/Dashboard_Design.md)
