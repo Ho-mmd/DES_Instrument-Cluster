@@ -8,10 +8,6 @@ from scipy.signal import bessel, lfilter
 from piracer.vehicles import PiRacerStandard
 from piracer.gamepads import ShanWanGamepad
 
-bus = SessionBus()
-piracer = PiRacerStandard()
-shanwan_gamepad = ShanWanGamepad()
-
 DBUS_INTERFACE = """
 <node>
     <interface name="com.example.Chkout">
@@ -20,6 +16,11 @@ DBUS_INTERFACE = """
     </interface>
 </node>
 """
+
+bus = SessionBus()
+piracer = PiRacerStandard()
+obj = bus.register_object("/com/example/CanData/Chkout" , DBUS_INTERFACE)
+shanwan_gamepad = ShanWanGamepad()
 
 order = 3
 b, a = bessel(order, 0.1)
@@ -52,6 +53,20 @@ class DbusData:
         self.battery_values = [self._current_battery] * 30
         self._current_throttle = -0.038
         self._current_gear = "OFF"
+
+    def handleError(self):
+        print("Now Handling error is called")
+        start_time = time.time()
+        while time.time() - start_time <10:
+            try:
+                self._dbus = bus.get("com.example.CanData", "/com/example/CanData/Data")
+                print("Reconneted successfully!")
+                break
+            except Exception as e:
+                print("Trying to reconnect...")
+                time.sleep(0.5)
+        else:
+            print("Failed to reconnect after multiple attempts.")
 
     def update(self, speed, rpm, battery, gear):
         self._current_speed = speed
