@@ -48,17 +48,26 @@ class DbusData:
         
         self._current_speed = 0.0
         self._current_rpm = 0.0
-        self._current_battery = 0
+        self._current_battery = ((((piracer.get_battery_voltage() / 3) - 3.1) / 1.1) * 100)
+        self.battery_values = [self._current_battery] * 30
         self._current_throttle = -0.038
         self._current_gear = "OFF"
 
     def update(self, speed, rpm, battery, gear):
         self._current_speed = speed
         self._current_rpm = rpm
-        self._current_battery = battery
+        self.battery_values.append(battery)
+
+        if len(self.battery_values) > 30:
+            self.battery_values.pop(0)
+        
+        battery = self.moving_average(self.battery_values)
         self._current_gear = gear
         print(f"Received RPM: {self._current_rpm}, Speed: {self._current_speed} Battery: {self._current_battery}, Gear: {self._current_gear}")
         self._dbus.setData(speed, rpm, battery, gear)
+    
+    def moving_average(values):
+        return np.mean(values)
 
 def receive_can_data(dbus_data):
     can_bus = can.interface.Bus(channel='can0', bustype='socketcan')
