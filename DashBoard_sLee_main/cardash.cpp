@@ -164,7 +164,7 @@ void                    carDash::checkErrVal()
 // This function calls the handleError function in a Python program via the D-Bus.
 void                    carDash::callHandleErrorOnPython()
 {
-    QDBusInterface      callPy("com.example.Chkout", "/com/example/Chkout", "com.example.Chkout");
+    QDBusInterface      callPy("com.example.CanData", "/com/example/CanData/Chkout", "com.example.Chkout");
 
     if (callPy.isValid())
     {
