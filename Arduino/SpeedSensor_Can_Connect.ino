@@ -41,7 +41,7 @@ unsigned long average;
 void setup() {
   // Initialize serial communication and attach interrupt
   Serial.begin(9600);
-  attachInterrupt(digitalPinToInterrupt(5), Pulse_Event, RISING);
+  attachInterrupt(digitalPinToInterrupt(3), Pulse_Event, RISING);
   delay(1000);
 
   // Initialize CAN bus shield
