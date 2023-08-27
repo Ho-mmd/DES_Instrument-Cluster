@@ -24,7 +24,7 @@ class carDash   :   public QObject
 
 public:
     carDash();                                                                                              // This is the constructor. It sets the initial values of the car's speed, rpm, battery, gear, and error value.
-    ~carDash();                                                                                             // This is the destructor. It cleans up when the object is deleted.
+
     double      speed()                     const;                                                          // This function returns the current speed of the car.
     double      rpm()                       const;                                                          // This function returns the current rpm of the car.
     double      battery()                   const;                                                          // This function returns the current battery of the car.
