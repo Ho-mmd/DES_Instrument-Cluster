@@ -11,15 +11,13 @@ from piracer.gamepads import ShanWanGamepad
 DBUS_INTERFACE = """
 <node>
     <interface name="com.example.Chkout">
-        <method name="handleError">
-        </method>
+        <method name="handleError"/>
     </interface>
 </node>
 """
 
 bus = SessionBus()
 piracer = PiRacerStandard()
-obj = bus.register_object("/com/example/CanData/Chkout" , DBUS_INTERFACE)
 shanwan_gamepad = ShanWanGamepad()
 
 order = 3
@@ -31,6 +29,24 @@ def bessel_filter(data, zi=None):
         return y[0], zf
     else:
         return lfilter(b, a, data)
+        
+class DbusChkout:
+    """
+    A class to interact with D-Bus and represent the Chkout interface.
+    """
+    def handleError(self):
+        print("Now Handling error is called")
+        start_time = time.time()
+        while time.time() - start_time <10:
+            try:
+                self._dbus = bus.get("com.example.CanData", "/com/example/CanData/Data")
+                print("Reconneted successfully!")
+                break
+            except Exception as e:
+                print("Trying to reconnect...")
+                time.sleep(0.5)
+        else:
+            print("Failed to reconnect after multiple attempts.")
 
 class DbusData:
     """A class to interact with D-Bus and represent data."""
@@ -54,19 +70,6 @@ class DbusData:
         self._current_throttle = -0.038
         self._current_gear = "OFF"
 
-    def handleError(self):
-        print("Now Handling error is called")
-        start_time = time.time()
-        while time.time() - start_time <10:
-            try:
-                self._dbus = bus.get("com.example.CanData", "/com/example/CanData/Data")
-                print("Reconneted successfully!")
-                break
-            except Exception as e:
-                print("Trying to reconnect...")
-                time.sleep(0.5)
-        else:
-            print("Failed to reconnect after multiple attempts.")
 
     def update(self, speed, rpm, battery, gear):
         self._current_speed = speed
@@ -81,7 +84,7 @@ class DbusData:
         print(f"Received RPM: {self._current_rpm}, Speed: {self._current_speed} Battery: {self._current_battery}, Gear: {self._current_gear}")
         self._dbus.setData(speed, rpm, battery, gear)
     
-    def moving_average(values):
+    def moving_average(self, values):
         return np.mean(values)
 
 def receive_can_data(dbus_data):
@@ -119,7 +122,9 @@ def receive_can_data(dbus_data):
             battery_percentage = ((((piracer.get_battery_voltage() / 3) - 3.1) / 1.1) * 100)
 
             dbus_data.update(300 * speed, rpm, battery_percentage, gear)
-             
+
 
 dbus_data = DbusData()
+dbus_chkout = DbusChkout()
+obj = bus.register_object("/com/example/CanData/Chkout", dbus_chkout, DBUS_INTERFACE)
 receive_can_data(dbus_data)
