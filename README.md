@@ -1,4 +1,4 @@
-# SEA:ME / DES_Project2
+# SEA:ME / DES_Instrument-Cluster
 
 ## Design
 <img src = "https://github.com/Ho-mmd/DES_Project2/assets/55338823/f6a5366d-0a50-48cd-9aad-fbfc7fda2c96">
